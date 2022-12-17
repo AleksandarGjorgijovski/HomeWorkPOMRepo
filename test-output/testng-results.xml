@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="2" total="3" passed="1" failed="0" skipped="0">
+<testng-results ignored="4" total="5" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-12-17T13:18:33 CET" name="Default suite" finished-at="2022-12-17T13:19:00 CET" duration-ms="27023">
+  <suite started-at="2022-12-17T13:55:33 CET" name="Default suite" finished-at="2022-12-17T13:56:00 CET" duration-ms="26877">
     <groups>
     </groups>
-    <test started-at="2022-12-17T13:18:33 CET" name="Default test" finished-at="2022-12-17T13:19:00 CET" duration-ms="27023">
+    <test started-at="2022-12-17T13:55:33 CET" name="Default test" finished-at="2022-12-17T13:56:00 CET" duration-ms="26877">
       <class name="testSuite.SearchPagePomTestScripts">
-        <test-method is-config="true" signature="start()[pri:0, instance:testSuite.SearchPagePomTestScripts@29d89d5d]" started-at="2022-12-17T13:18:34 CET" name="start" finished-at="2022-12-17T13:19:00 CET" duration-ms="26535" status="PASS">
+        <test-method is-config="true" signature="start()[pri:0, instance:testSuite.SearchPagePomTestScripts@69997e9d]" started-at="2022-12-17T13:55:33 CET" name="start" finished-at="2022-12-17T13:55:55 CET" duration-ms="22031" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- start -->
-        <test-method signature="VerifyAnErrorMessageShouldDisplayForBlankInput()[pri:0, instance:testSuite.SearchPagePomTestScripts@29d89d5d]" started-at="2022-12-17T13:19:00 CET" name="VerifyAnErrorMessageShouldDisplayForBlankInput" finished-at="2022-12-17T13:19:00 CET" duration-ms="375" status="PASS">
+        <test-method signature="searchSqlinjection()[pri:0, instance:testSuite.SearchPagePomTestScripts@69997e9d]" started-at="2022-12-17T13:55:55 CET" name="searchSqlinjection" finished-at="2022-12-17T13:55:56 CET" duration-ms="1042" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- VerifyAnErrorMessageShouldDisplayForBlankInput -->
+        </test-method> <!-- searchSqlinjection -->
+        <test-method is-config="true" signature="end()[pri:0, instance:testSuite.SearchPagePomTestScripts@69997e9d]" started-at="2022-12-17T13:55:56 CET" name="end" finished-at="2022-12-17T13:56:00 CET" duration-ms="3702" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- end -->
       </class> <!-- testSuite.SearchPagePomTestScripts -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->

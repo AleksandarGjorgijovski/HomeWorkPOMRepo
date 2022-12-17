@@ -87,4 +87,9 @@ public class TestData {
 	public String startDay = "20";
 	public String endDay = "31";
 	
+	
+	public String xssAttack = "<script></script>";
+	public String blockPageTitle ="Attention Required! | Cloudflare";
+	public String sqlInjection = "\"Select * from product\"";
+	
 }

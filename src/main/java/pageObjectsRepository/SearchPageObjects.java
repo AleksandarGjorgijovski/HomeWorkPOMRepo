@@ -78,5 +78,8 @@ public class SearchPageObjects extends Base {
 			
 			driver.switchTo().alert().accept();
 		}
+		public void verifySuccessfulBlockOnAttack() {
+			Assert.assertEquals(driver.getTitle(), td.blockPageTitle);
+		}
 }
 

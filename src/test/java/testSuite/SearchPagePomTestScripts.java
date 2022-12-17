@@ -1,5 +1,6 @@
 package testSuite;
 
+import org.openqa.selenium.Keys;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -53,6 +54,20 @@ public class SearchPagePomTestScripts extends Base {
 	public void VerifyAnErrorMessageShouldDisplayForBlankInput() {
 		sp.hpSearchBtn.click();
 		sp.verifyAlertBlankSearch();
+	}
+
+	@Test
+	public void searchXssVulnerability() {
+		sp.searchFiled.sendKeys(td.xssAttack);
+		sp.hpSearchBtn.sendKeys(Keys.ENTER);
+		sp.verifySuccessfulBlockOnAttack();
+	}
+
+	@Test
+	public void searchSqlInjection() {
+		sp.searchFiled.sendKeys(td.sqlInjection);
+		sp.hpSearchBtn.sendKeys(Keys.ENTER);
+		sp.verifySuccessfulBlockOnAttack();
 	}
 
 }

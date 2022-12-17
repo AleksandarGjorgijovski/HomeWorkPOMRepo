@@ -2,11 +2,9 @@ package testSuite;
 
 
 
-
 import java.awt.AWTException;
 import java.io.IOException;
 import java.lang.reflect.Method;
-
 
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -33,7 +31,7 @@ public class CheckoutPagePomTestScripts extends Base{
 	HomePageObjects hp;
 	PlpObjects plp;
 	PdpObjects pdp;
-	ShoppingCartPageObjects sh;
+	ShoppingCartPageObjects shp;
 	WishlistPageObjects wh;
 	SearchPageObjects sp;
 	LoginPageObjects lp;
@@ -49,7 +47,7 @@ public class CheckoutPagePomTestScripts extends Base{
 		hp = new HomePageObjects();
 		plp = new PlpObjects();
 		pdp = new PdpObjects();
-		sh = new ShoppingCartPageObjects();
+		shp = new ShoppingCartPageObjects();
 		wh = new WishlistPageObjects();
 		sp = new SearchPageObjects();
 		lp = new LoginPageObjects();
@@ -76,19 +74,19 @@ public class CheckoutPagePomTestScripts extends Base{
 		comm.waitElement(plp.plpWindows8addToCart);
 		plp.addToCartFromPLP(plp.plpWindows8addToCart);
 		hp.hpShoppingCartLink.click();
-		comm.waitElement(sh.shTermsChbox);
-		sh.acceptTermsAndCheckoutBtn();
+		comm.waitElement(shp.shTermsChbox);
+		shp.acceptTermsAndCheckoutBtn();
 		lp.loginUserAndLoginBtn(td.validEmail, td.validPassword);
 		rp.registerUserIfNotAlreadyRegistered(td.firstName, td.lastName, td.validEmail, td.validPassword, td.validConfrimPassword);
-		sh.acceptTermsAndCheckoutBtn();
+		shp.acceptTermsAndCheckoutBtn();
 		ch.chBillShipToTheSameAddressCheckbox.click();
-		ch.ifBillingAddressBookIsPopulatedOrNot(0);
+		ch.ifBillingAddressBookIsPopulatedOrNot(0, td.validMacedoniaValue, td.validCityBitola, td.validAddress, td.validZipCode, td.validPhoneNumber);
 		comm.waitElement(ch.chSelectShippingAddressBook);
 		comm.selectFromDropManuByLastIndex(ch.chSelectShippingAddressBook);
 		ch.validShippingAddressMandatoryField(td.validMacedoniaValue, td.validCityPrilep, td.validShipAddress, td.validShipZipCode, td.validShipPhoneNumber);
 		captureScreenshotURL("shippingAddress");
 	//	captureFullScreenshot("shippingAddress");
-		ch.shippingMethod(ch.chShipMetodGorund);
+		ch.shippingMethod(ch.chShipMethodGorund);
 		comm.waitElement(ch.chPayMethodCard);
 		ch.paymentMethod(ch.chPayMethodCard);
 		comm.waitElement(ch.chPayInfoConBtn);
@@ -107,12 +105,12 @@ public class CheckoutPagePomTestScripts extends Base{
 		comm.waitElement(plp.plpWindows8addToCart);
 		plp.addToCartFromPLP(plp.plpWindows8addToCart);
 		hp.hpShoppingCartLink.click();
-		comm.waitElement(sh.shTermsChbox);
-		sh.acceptTermsAndCheckoutBtn();
+		comm.waitElement(shp.shTermsChbox);
+		shp.acceptTermsAndCheckoutBtn();
 		ch.chCheckoutAsGuest.click();
 		ch.validBillAddressAllMandatoryField(td.firstName, td.lastName, td.validEmail6, td.validMacedoniaValue, td.validCityBitola, td.validAddress, td.validZipCode, td.validPhoneNumber);
-		comm.waitElement(ch.chShipMetodGorund);
-		ch.shippingMethod(ch.chShipMetodGorund);
+		comm.waitElement(ch.chShipMethodGorund);
+		ch.shippingMethod(ch.chShipMethodGorund);
 		comm.waitElement(ch.chPayMethodCheck);
 		ch.chPayMethodCheck.click();
 		ch.chPayMethodConBtn.click();
@@ -133,9 +131,9 @@ public class CheckoutPagePomTestScripts extends Base{
 		comm.scrollTo(plp.plpWindows8addToCart);
 		plp.addToCartFromPLP(plp.plpWindows8addToCart);
 		hp.hpShoppingCartLink.click();
-		comm.waitElement(sh.shTermsChbox);
+		comm.waitElement(shp.shTermsChbox);
 		captureScreenshot("shopping cart");
-		sh.acceptTermsAndCheckoutBtn();
+		shp.acceptTermsAndCheckoutBtn();
 		ch.chCheckoutAsGuest.click();
 		ch.validBillAddressAllMandatoryField(td.firstName, td.lastName, td.incorrectEmail, td.validMacedoniaValue, td.validCityBitola, td.validAddress, td.validZipCode, td.validPhoneNumber);
 //		Assert.assertTrue(ch.chShipMetodConBtn.isDisplayed(), "User is not navigated to Shopping Method");
@@ -152,12 +150,38 @@ public class CheckoutPagePomTestScripts extends Base{
 		comm.waitElement(plp.plpWindows8addToCart);
 		plp.addToCartFromPLP(plp.plpWindows8addToCart);
 		hp.hpShoppingCartLink.click();
-		comm.waitElement(sh.shTermsChbox);
-		sh.acceptTermsAndCheckoutBtn();
+		comm.waitElement(shp.shTermsChbox);
+		shp.acceptTermsAndCheckoutBtn();
 		ch.chCheckoutAsGuest.click();
 		ch.chBillContinueBtn.click();
 		
 		Assert.assertTrue(ch.chShipMetodConBtn.isDisplayed(), "Required mandatory Billing Address fields are not properly populated");
+	}
+	@Test
+	public void VerifyInvalidCheckoutWithBlankPaymentInformation() {
+		hp.hpLoginLink.click();
+		lp.loginUserAndLoginBtn(td.validEmail, td.validPassword);
+		rp.registerUserIfNotAlreadyRegistered(td.firstName, td.lastName, td.validEmail, td.validPassword, td.validConfrimPassword);
+		comm.mouseOverAndClickAction(hp.hpComputersBanner, hp.hpDesktopBanner);
+		comm.waitElement(plp.plpBuildYourOwnComputer);
+		plp.plpBuildYourOwnComputer.click();
+		comm.selectFromDropManu(pdp.pdpProcessorDropMenu, td.processor25GHz);
+		comm.selectFromDropManu(pdp.pdpRamDropMenu, td.ram8GB);
+		pdp.pdpHDD400RadioBtn.click();
+		pdp.pdpVistaPremiumRadioBtn.click();
+		pdp.addCartBtn.click();
+		hp.shoppingCartMsgLink.click();
+		shp.acceptTermsAndCheckoutBtn();
+		ch.ifBillingAddressBookIsPopulatedOrNot(0, td.validMacedoniaValue, td.validCityBitola, td.validAddress, td.validZipCode, td.validPhoneNumber);
+		comm.waitElement(ch.chShipMethodGorund);
+		ch.shippingMethod(ch.chShipMethodGorund);
+		comm.waitElement(ch.chPayMethodCard);
+		ch.paymentMethod(ch.chPayMethodCard);
+		comm.waitElement(ch.chPayInfoConBtn);
+		ch.chPayInfoConBtn.click();
+		comm.waitElement(ch.chPaymentInformationErrorMsg);
+		Assert.assertTrue(ch.chPaymentInformationErrorMsg.isDisplayed());
+		
 	}
 }
 

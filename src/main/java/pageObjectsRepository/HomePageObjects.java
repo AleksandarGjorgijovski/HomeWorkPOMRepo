@@ -12,7 +12,7 @@ public class HomePageObjects extends Base {
 
 	//Locators
 	@FindBy(xpath = "//a[@class='ico-login']")
-	WebElement hpLoginLink;
+	public WebElement hpLoginLink;
 	
 	@FindBy(xpath = "//select[@id='customerCurrency']")
 	WebElement hpCurrencyManu;
@@ -46,6 +46,9 @@ public class HomePageObjects extends Base {
 	//locators category banner
 	@FindBy(xpath = "(//a[@href='/computers'])[1]")
 	public WebElement hpComputersBanner;
+	
+	@FindBy(xpath = "//a[@href='/desktops']")
+	public WebElement hpDesktopBanner;
 	
 	@FindBy(xpath = "(//a[@href='/electronics'])[1]")
 	public WebElement hpElectronicsBanner;

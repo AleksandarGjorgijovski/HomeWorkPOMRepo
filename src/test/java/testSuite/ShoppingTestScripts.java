@@ -8,8 +8,10 @@ import org.testng.annotations.Test;
 import base.Base;
 import base.CommonPOM;
 import pageObjectsRepository.HomePageObjects;
+import pageObjectsRepository.LoginPageObjects;
 import pageObjectsRepository.PdpObjects;
 import pageObjectsRepository.PlpObjects;
+import pageObjectsRepository.RegisterPageObjects;
 import pageObjectsRepository.SearchPageObjects;
 import pageObjectsRepository.ShoppingCartPageObjects;
 import pageObjectsRepository.WishlistPageObjects;
@@ -24,7 +26,9 @@ public class ShoppingTestScripts extends Base {
 	WishlistPageObjects wh;
 	SearchPageObjects sp;
 	CommonPOM comm;
-	
+	LoginPageObjects lp;
+	RegisterPageObjects rp;
+
 	@BeforeMethod
 	public void start() {
 		testSetup();
@@ -36,8 +40,11 @@ public class ShoppingTestScripts extends Base {
 		wh = new WishlistPageObjects();
 		sp = new SearchPageObjects();
 		comm = new CommonPOM();
-				
+		lp = new LoginPageObjects();
+		rp = new RegisterPageObjects();
+
 	}
+
 	@AfterMethod
 	public void end() {
 		testTeardown();
@@ -48,35 +55,62 @@ public class ShoppingTestScripts extends Base {
 		comm.mouseOverAndClickAction(hp.hpApparelBanner, hp.hpClothingBanner);
 		pdp.levisLink.click();
 		comm.waitElement(pdp.pdpSkuCode);
-		
+
 		Integer originalPriceprice435Num = shp.convertTablePriceToInteger(pdp.levisTabelPrice435);
 		Integer tabelPriceprice40Num = shp.convertTablePriceToInteger(pdp.levisTabelPrice40);
 		Integer tabelPriceprice38Num = shp.convertTablePriceToInteger(pdp.levisTabelPrice38);
 		Integer tabelPriceprice35Num = shp.convertTablePriceToInteger(pdp.levisTabelPrice35);
-	
+
 		pdp.addCartBtn.click();
 		hp.hpShoppingCartLink.click();
 		shp.shLevisQuantityField.clear();
-		
+
 		int randomQuantity = shp.generateRandomAndUpdateShoppingCart(15, shp.shLevisQuantityField);
-		
+
 		comm.waitElement(wh.wSinglePrice);
-		
+
 		Integer singlePriceShoppingCart = shp.convertPriceShoppingCartToInteger(wh.wSinglePrice);
-		
-		if(randomQuantity == 1 && randomQuantity == 2)
-		{ Assert.assertEquals(singlePriceShoppingCart, originalPriceprice435Num);	  
-		
-		}else if (randomQuantity >= 3 && randomQuantity <= 5){
+
+		if (randomQuantity == 1 && randomQuantity == 2) {
+			Assert.assertEquals(singlePriceShoppingCart, originalPriceprice435Num);
+
+		} else if (randomQuantity >= 3 && randomQuantity <= 5) {
 			Assert.assertEquals(singlePriceShoppingCart, tabelPriceprice40Num);
-			
-		}else if (randomQuantity >= 6 && randomQuantity <=9){
+
+		} else if (randomQuantity >= 6 && randomQuantity <= 9) {
 			Assert.assertEquals(singlePriceShoppingCart, tabelPriceprice38Num);
-			
-		}else if (randomQuantity >= 10){
+
+		} else if (randomQuantity >= 10) {
 			Assert.assertEquals(singlePriceShoppingCart, tabelPriceprice35Num);
 		}
 	}
-}
-	
 
+	@Test
+	public void verifyShoppingCartRemoveItem() {
+		hp.hpBooksBanner.click();
+		plp.plpFahrenheitLink.click();
+		pdp.addCartBtn.click();
+		comm.goBack();
+		plp.plpFirstPrizePiesLink.click();
+		pdp.addCartBtn.click();
+		comm.goBack();
+		plp.plpPrideAndPrejudiceLink.click();
+		pdp.addCartBtn.click();
+		hp.shoppingCartMsgLink.click();
+		shp.removeAllItemsFromShoppingCart();
+		shp.verifyShoppingCartIsEmpty();
+		shp.verifyTermsOfServiceDialogWindow();
+
+	}
+
+	@Test
+	public void verifyTermsOfServiceLink() {
+		hp.hpJewelryBanner.click();
+		plp.plpFlowerGirlBraceletLink.click();
+		pdp.addCartBtn.click();
+		hp.shoppingCartMsgLink.click();
+		shp.shReadTermsLink.click();
+
+	}
+
+}

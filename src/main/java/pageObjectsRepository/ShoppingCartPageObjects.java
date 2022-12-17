@@ -1,5 +1,6 @@
 package pageObjectsRepository;
 
+import java.util.List;
 import java.util.Random;
 
 import org.openqa.selenium.By;
@@ -47,7 +48,7 @@ public class ShoppingCartPageObjects extends Base {
 	WebElement shAddGiftCardBtn;
 
 	@FindBy(xpath = "//a[@id=\"read-terms\"]")
-	WebElement shReadTermsLink;
+	public WebElement shReadTermsLink;
 
 	@FindBy(xpath = "//select[@id='checkout_attribute_1']")
 	WebElement shGiftWrapManu;
@@ -64,9 +65,8 @@ public class ShoppingCartPageObjects extends Base {
 	@FindBy(xpath = "//span[@class='product-unit-price']")
 	public WebElement SinglePriceShoppingCart;
 
-	@FindBy(xpath = "td[@class='item-price']")
-	WebElement tablePrice;
-
+	@FindBy(xpath = "//p[contains(text(),'conditions')]")
+	public WebElement shTermsOfServiceDialog;
 	// Initiation
 	public ShoppingCartPageObjects() {
 		PageFactory.initElements(driver, this);
@@ -122,6 +122,14 @@ public class ShoppingCartPageObjects extends Base {
 		shCheckoutBtn.click();
 
 	}
+	public void removeAllItemsFromShoppingCart() {
+		List<WebElement> totalItemsShoppingCart = driver.findElements(By.xpath("//a[@class='product-name']"));
+		for (int i = 1; i <= totalItemsShoppingCart.size(); i++) {
+			shRemoveBtn.click();
+		}
+	}
+	
+	//verifications
 
 	public void sourcePageContains(String nameOfItem) {
 		String pageSource = driver.getPageSource();
@@ -133,6 +141,12 @@ public class ShoppingCartPageObjects extends Base {
 		String actDate = driver.findElement(By.xpath("//div[@class='rental-info']")).getText();
 		String expDate = "Start date: " + typeExpStartDate + "." + " End date: " + typeExpEndDate + ".";
 		Assert.assertEquals(actDate, expDate);
+	}
+	public void verifyShoppingCartIsEmpty() {
+		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='no-data']")).isDisplayed(), "Error: the Shopping cart is not empty");
+	}
+	public void verifyTermsOfServiceDialogWindow() {
+		Assert.assertTrue(shTermsOfServiceDialog.isDisplayed());
 	}
 
 }

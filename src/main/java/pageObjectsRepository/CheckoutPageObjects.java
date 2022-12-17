@@ -55,7 +55,7 @@ public class CheckoutPageObjects extends Base{
 	public WebElement chShipContinueBtn;
 	
 	@FindBy(xpath = "//input[@value='Ground___Shipping.FixedByWeightByTotal']")
-	public WebElement chShipMetodGorund;
+	public WebElement chShipMethodGorund;
 	@FindBy(xpath = "//button[@class='button-1 shipping-method-next-step-button']")
 	public WebElement chShipMetodConBtn;
 	
@@ -91,6 +91,10 @@ public class CheckoutPageObjects extends Base{
 	
 	@FindBy(xpath = "//button[text()='Checkout as Guest']")
 	public WebElement chCheckoutAsGuest;
+	
+	@FindBy(xpath = "//div[@class='message-error validation-summary-errors']/descendant::li")
+	public WebElement chPaymentInformationErrorMsg;
+	
 	
 	//initiation
 	public CheckoutPageObjects() {
@@ -142,10 +146,10 @@ public class CheckoutPageObjects extends Base{
 		chPayInfoCodeField.sendKeys(cardCode);
 		chPayInfoConBtn.click();
 	}
-	public void ifBillingAddressBookIsPopulatedOrNot(int index) {
+	public void ifBillingAddressBookIsPopulatedOrNot(int index, String selectCountryValue, String city, String address1, String zip, String phoneNumber ) {
 		int billingAddressBook = driver.findElements(By.xpath("//label[@for='billing-address-select']")).size();
 		if (billingAddressBook == 0) {
-			validBillAddressMandatoryField(td.validMacedoniaValue, td.validCityBitola, td.validAddress, td.validZipCode, td.validPhoneNumber);
+			validBillAddressMandatoryField(selectCountryValue, city, address1, zip, phoneNumber);
 		}else if (billingAddressBook > 0){
 			comm.waitElement(chSelectBillingAddressBook);
 			comm.selectFromDropManuByIndex(chSelectBillingAddressBook, index);

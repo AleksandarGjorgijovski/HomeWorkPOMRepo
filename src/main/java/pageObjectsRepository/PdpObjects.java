@@ -108,7 +108,18 @@ public class PdpObjects extends Base {
 	@CacheLookup
 	@FindBy(xpath = "(//input[@class='datepicker hasDatepicker'])[2]")
 	public WebElement pdpRentalEndDate;
+	
+	@FindBy(xpath = "//select[@id='product_attribute_1']")
+	public WebElement pdpProcessorDropMenu;
+	
+	@FindBy(xpath = "//select[@id='product_attribute_2']")
+	public WebElement pdpRamDropMenu;
+	
+	@FindBy(xpath = "//input[@id='product_attribute_3_7']")
+	public WebElement pdpHDD400RadioBtn;
 
+	@FindBy(xpath = "//input[@id='product_attribute_4_9']")
+	public WebElement pdpVistaPremiumRadioBtn;
 	// initi
 	public PdpObjects() {
 		PageFactory.initElements(driver, this);

@@ -12,10 +12,10 @@ public class LoginPageObjects extends Base {
 	TestData userTestData = new TestData();
 
 	@FindBy(xpath = "//input[@id='Email']")
-	WebElement lpEmailField;
+	public WebElement lpEmailField;
 	
 	@FindBy(xpath = "//input[@id='Password']")
-	WebElement lpPasswordField;
+	public WebElement lpPasswordField;
 	
 	@FindBy(xpath = "//button[text()='Log in']")
 	public WebElement lpLoginBtn;

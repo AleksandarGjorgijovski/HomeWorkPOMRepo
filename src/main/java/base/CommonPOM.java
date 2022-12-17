@@ -82,4 +82,7 @@ public class CommonPOM extends Base {
 	public void implicitlyWait() {
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 	}
+	public void goBack() {
+		driver.navigate().back();
+	}
 }

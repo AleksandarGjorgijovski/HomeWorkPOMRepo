@@ -91,5 +91,7 @@ public class TestData {
 	public String xssAttack = "<script></script>";
 	public String blockPageTitle ="Attention Required! | Cloudflare";
 	public String sqlInjection = "\"Select * from product\"";
+	public String processor25GHz = "2";
+	public String ram8GB = "5";
 	
 }

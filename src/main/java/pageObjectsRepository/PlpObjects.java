@@ -52,7 +52,19 @@ public class PlpObjects extends Base {
 
 	@FindBy(xpath = "//a[@href='/software' and @title]")
 	public WebElement plpSoftwareSubCategory;
+	
+	@FindBy(xpath = "//div[@class='item-grid']/descendant::a[@href='/fahrenheit-451-by-ray-bradbury']")
+	public WebElement plpFahrenheitLink;
+	
+	@FindBy(xpath = "//div[@class='item-grid']/descendant::a[@href='/first-prize-pies']")
+	public WebElement plpFirstPrizePiesLink;
+	
+	@FindBy(xpath = "//div[@class='item-grid']/descendant::a[@href='/pride-and-prejudice']")
+	public WebElement plpPrideAndPrejudiceLink;
 
+	@FindBy(xpath = "//div[@class='page-body']/descendant::a[@href='/build-your-own-computer' and @title]")
+	public WebElement plpBuildYourOwnComputer;
+	
 	@FindBy(xpath = "//a[@href='/windows-8-pro' and @title]")
 	public WebElement plpWindows8;
 
@@ -82,6 +94,9 @@ public class PlpObjects extends Base {
 
 	@FindBy(xpath = "//div[@class='description']")
 	public WebElement plpItemDescription;
+	
+	@FindBy(xpath = "//h2[@class='product-title']/child::*[contains(text(),'Flower')]")
+	public WebElement plpFlowerGirlBraceletLink;
 
 	// initi
 	public PlpObjects() {

@@ -11,32 +11,42 @@ import base.Base;
 import testData.TestData;
 
 public class SearchPageObjects extends Base {
-	TestData userTestData = new TestData();
+	TestData td = new TestData();
 	
 	@FindBy(xpath = "//input[@id='small-searchterms']")
 	public WebElement searchFiled ;
+	
 	@FindBy(xpath = "//button[@class='button-1 search-box-button']")
 	public WebElement hpSearchBtn;
+	
 	@FindBy(xpath = "//input[@id='advs']")
 	public WebElement advancedSearch;
+	
 	@FindBy(xpath = "//option[text()='Computers >> Notebooks']")
 	public WebElement searchComNoteDropManu;
+	
 	@FindBy(xpath = "//button[@class='button-1 search-button']")
 	public WebElement searchBtnPg;
+	
 	@FindBy(xpath = "//select[@id='cid']")
 	public WebElement searchCategoryDropManu;
+	
 	@FindBy(xpath = "//h2[@class='product-title']")
 	public WebElement searchProductTitle;
+	
 	@FindBy(xpath = "//input[@class='search-text']")
 	public WebElement serchSearchKeyword;
+	
 	@FindBy(xpath = "//input[@id='isc']")
 	public WebElement serchAutoSubCategoruCheckBox;
+	
 	@FindBy(xpath = "//select[@id='products-orderby']")
 	public WebElement productOrderBy;
 	
+	@FindBy(xpath = "")
+	public WebElement searchBlankAlertMsg;
 	
-	
-	//Initiation na WebDriver (NE MOZI DA E VOID)
+	//Initiation
 		public SearchPageObjects() {
 			PageFactory.initElements(driver, this);
 	
@@ -58,6 +68,15 @@ public class SearchPageObjects extends Base {
 		public void verifyByPageSource(String ItemSorcePage) {
 			String pageSource = driver.getPageSource(); 
 			Assert.assertFalse((pageSource.contains(ItemSorcePage)));
+		}
+		public void verifyAlertBlankSearch() {
+			String expAlertMsg = "Please enter some search keyword";
+			
+			String actAlertMsg = driver.switchTo().alert().getText();
+			
+			Assert.assertEquals(actAlertMsg, expAlertMsg);
+			
+			driver.switchTo().alert().accept();
 		}
 }
 

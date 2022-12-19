@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="testSuite.CheckoutPagePomTestScripts">
+      <class name="testSuite.LoginPomTestScripts">
         <methods>
-          <include name="VerifyInvalidCheckoutWithBlankPaymentInformation"/>
-          <include name="start"/>
-          <include name="end"/>
+          <include name="verifyUserIsNotLoggedoutWhenPressingBackNavigationButton"/>
+          <include name="endTest"/>
+          <include name="startTest"/>
         </methods>
-      </class> <!-- testSuite.CheckoutPagePomTestScripts -->
+      </class> <!-- testSuite.LoginPomTestScripts -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

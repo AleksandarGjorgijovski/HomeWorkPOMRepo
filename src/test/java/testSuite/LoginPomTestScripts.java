@@ -8,90 +8,88 @@ import base.Base;
 import base.CommonPOM;
 import pageObjectsRepository.HomePageObjects;
 import pageObjectsRepository.LoginPageObjects;
+import pageObjectsRepository.RegisterPageObjects;
 import testData.TestData;
 
 public class LoginPomTestScripts extends Base {
-	
-	HomePageObjects homePage;
-	LoginPageObjects loginPage;
-	TestData userTestData;
+
+	HomePageObjects hp;
+	LoginPageObjects lp;
+	TestData td;
 	CommonPOM comm;
-	
+	RegisterPageObjects rp;
+
 	@BeforeMethod
 	public void startTest() {
 		testSetup();
-		homePage = new HomePageObjects();
-		loginPage = new LoginPageObjects();
-		userTestData = new TestData();
+		hp = new HomePageObjects();
+		lp = new LoginPageObjects();
+		td = new TestData();
 		comm = new CommonPOM();
+		rp = new RegisterPageObjects();
 	}
+
 	@AfterMethod
 	public void endTest() {
 		testTeardown();
 	}
-	@Test	
+
+	@Test
 	public void TC_LOGIN_001_NavigateToLoginPage() {
-	homePage.navigateLoginPage();
-	//za proverka
-	//homePage.navigateRegisterPage();
-	loginPage.verifyLoginPageOpened();
-	comm.print("Login page is opend");
+		hp.navigateLoginPage();
+		// za proverka
+		// homePage.navigateRegisterPage();
+		lp.verifyLoginPageOpened();
+		comm.print("Login page is opend");
 	}
+
 	@Test
 	public void TC_LOGIN_002_ValidEmailAndPassword() {
-		homePage.navigateLoginPage();
-		loginPage.loginUser(userTestData.validEmail1, userTestData.validPassword);
-		loginPage.lpLoginBtn.click();
-		loginPage.verifySuccessfulLogin();
+		hp.navigateLoginPage();
+		lp.loginUser(td.validEmail1, td.validPassword);
+		lp.lpLoginBtn.click();
+		lp.verifySuccessfulLogin();
 	}
+
 	@Test
 	public void TC_LOGIN_003_ValidEmailAndInvalidPassword() {
-		homePage.navigateLoginPage();
-		loginPage.loginUser(userTestData.validEmail1, userTestData.invalidPassword);
-		loginPage.lpLoginBtn.click();
-		loginPage.verifyUnsuccessfilLogin();	
+		hp.navigateLoginPage();
+		lp.loginUser(td.validEmail1, td.invalidPassword);
+		lp.lpLoginBtn.click();
+		lp.verifyUnsuccessfilLogin();
 	}
+
 	@Test
 	public void TC_LOGIN_008EmptyEmailAndValidPassword() {
-		homePage.navigateLoginPage();
-		loginPage.loginUser(userTestData.emptyEmail, userTestData.validPassword);
-		loginPage.lpLoginBtn.click();
-		loginPage.verifyUnsuccessfulLoginEmpltyEmail();
+		hp.navigateLoginPage();
+		lp.loginUser(td.emptyEmail, td.validPassword);
+		lp.lpLoginBtn.click();
+		lp.verifyUnsuccessfulLoginEmpltyEmail();
 	}
+
 	@Test
 	public void TC_LOGIN_009ForgetPasswordValidEmail() {
-		homePage.navigateLoginPage();
-		loginPage.loginForgetPassword(userTestData.validEmail1);
-		loginPage.verifySuccesfulRecovery();
-	} 
+		hp.navigateLoginPage();
+		lp.loginForgetPassword(td.validEmail1);
+		lp.verifySuccesfulRecovery();
+	}
+
 	@Test
 	public void TC_LOGIN_009ForgetPasswordInvalidEmail() {
-		//verify that recovery info is not send to unregistered user
-		homePage.navigateLoginPage();
-		loginPage.loginForgetPassword(userTestData.invalidEmail);
-		loginPage.verifyUnsuccesfulrecovery();
-	} 
+		// verify that recovery info is not send to unregistered user
+		hp.navigateLoginPage();
+		lp.loginForgetPassword(td.invalidEmail);
+		lp.verifyUnsuccesfulrecovery();
+	}
+
+	@Test
+	public void verifyUserIsNotLoggedoutWhenPressingBackNavigationButton() {
+		hp.hpLoginLink.click();
+		lp.loginUserAndLoginBtn(td.validEmail, td.validPassword);
+		rp.registerUserIfNotAlreadyRegistered(td.firstName, td.lastName, td.validEmail, td.validPassword,
+				td.validConfrimPassword);
+		comm.goBack();
+		comm.goForward();
+		lp.verifySuccessfulLogin();
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

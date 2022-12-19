@@ -92,4 +92,10 @@ public class LoginPomTestScripts extends Base {
 		comm.goForward();
 		lp.verifySuccessfulLogin();
 	}
+	@Test
+	public void verifyUserIsNotAbleToLoginWithInvalidEmailAndPassword() {
+		hp.hpLoginLink.click();
+		lp.loginUserAndLoginBtn(td.invalidEmail, td.invalidPassword);
+		lp.verifyUnsuccessfilLogin();
+	}
 }

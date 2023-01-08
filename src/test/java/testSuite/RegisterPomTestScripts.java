@@ -69,11 +69,11 @@ public class RegisterPomTestScripts extends Base {
 	@Test
 	public void TC_REGISTER_004_RegisterNewUserWithExistingEmail() {
 		homePage.navigateLoginPage();
-		loginPage.loginUserAndLoginBtn(testData.validEmail2, testData.validPassword);
-		registerPage.registerUserIfNotAlreadyRegisteredFromHomePage(testData.firstName, testData.lastName,
-				testData.validEmail2, testData.validPassword, testData.validConfrimPassword);
+		loginPage.loginUserAndLoginBtn(testData.validEmail1, testData.validPassword);
+		registerPage.registerUserIfNotAlreadyRegisteredFromHomePageAndLogout(testData.firstName, testData.lastName,
+				testData.validEmail1, testData.validPassword, testData.validConfrimPassword);
 		homePage.navigateRegisterPage();
-		registerPage.registerUserMandatoryFields(testData.firstName, testData.lastName, testData.validEmail,
+		registerPage.registerUserMandatoryFields(testData.firstName, testData.lastName, testData.validEmail1,
 				testData.validPassword, testData.validConfrimPassword);
 		registerPage.registerBtn.click();
 		registerPage.verifyUnuccessfulRegisterExistingEmail();

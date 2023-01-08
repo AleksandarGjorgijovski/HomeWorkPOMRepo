@@ -98,6 +98,9 @@ public class PlpObjects extends Base {
 	@FindBy(xpath = "//h2[@class='product-title']/child::*[contains(text(),'Flower')]")
 	public WebElement plpFlowerGirlBraceletLink;
 
+	@FindBy(xpath = "//h2[@class='product-title']/child::*[contains(text(),'Obey')]")
+	public WebElement plpObeyPropagandaHatLink;
+	
 	// initi
 	public PlpObjects() {
 		PageFactory.initElements(driver, this);

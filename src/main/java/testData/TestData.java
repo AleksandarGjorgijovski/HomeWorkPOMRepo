@@ -29,6 +29,8 @@ public class TestData {
 	public String lastName = "Gjorgijovski";
 	public String companyName = "IWConnect";
 	
+	public String validHatSizeMedium = "35";
+	
 	public String validQuantity = "6";
 	public String validQuantity5 ="5";
 	public String validSizeTxt = "9";
@@ -81,6 +83,10 @@ public class TestData {
 	public String validItemSourcePage = "Processor: 2.2 GHz Intel Pentium Dual-Core E2200" + " " + "RAM: 8GB" + " " + "HDD: 400 GB"+ " " + "OS: Vista Home";
 	public String validItemSourcePage1 = "RAM: 8GB";
 	public String validItemSourcePage2 = "Processor: 2.2 GHz Intel Pentium Dual-Core E2200";
+	public String SKUElegant = "EG_GEM_NL";
+	public String SKUFahrenheit = "FR_451_RB";
+	public String SKUFlowerGirlBracelet = "FL_GIRL_B";
+	
 	
 	//screenshot
 	public String screenshotName = "nopcommerce";
@@ -97,6 +103,7 @@ public class TestData {
 	public String xssAttack = "<script></script>";
 	public String blockPageTitle ="Attention Required! | Cloudflare";
 	public String sqlInjection = "\"Select * from product\"";
+	
 	public String processor2_2GHZ = "1";
 	public String processor2_5GHz = "2";
 	public String ram8GB = "5";

@@ -119,7 +119,7 @@ public class PdpPomTestScripts extends Base {
 		pdp.pdpRentalEndDate.sendKeys("8/20/2023");
 		pdp.addCartBtn.click();
 		homePage.shoppingCartMsgLink.click();
-		shoppingCartPage.sourcePageContains("Elegant");
+		comm.verifyByPageSourceContains(testData.SKUElegant);
 	}
 
 	@Test
@@ -135,7 +135,7 @@ public class PdpPomTestScripts extends Base {
 
 		pdp.addCartBtn.click();
 		homePage.shoppingCartMsgLink.click();
-		shoppingCartPage.sourcePageContains("Elegant");
+		comm.verifyByPageSourceContains(testData.SKUElegant);
 		shoppingCartPage.verifyCorectStartEndDate("8/20/2023", "9/30/2023");
 
 	}
@@ -153,7 +153,7 @@ public class PdpPomTestScripts extends Base {
 
 		pdp.addCartBtn.click();
 		homePage.shoppingCartMsgLink.click();
-		shoppingCartPage.sourcePageContains("Elegant");
+		comm.verifyByPageSourceContains(testData.SKUElegant);
 		shoppingCartPage.verifyCorectStartEndDate("8/20/2023", "9/30/2023");
 
 	}

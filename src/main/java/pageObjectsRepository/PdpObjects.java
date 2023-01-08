@@ -95,6 +95,9 @@ public class PdpObjects extends Base {
 	@FindBy(xpath = "//select[@name='product_attribute_11']")
 	public WebElement pdpSizeDropBox;
 
+	@FindBy(xpath = "//select[@id='product_attribute_13']")
+	public WebElement pdpSizeHatDropBox;
+	
 	@FindBy(xpath = "//div[@class='sku']/child::*[@class='value']")
 	public WebElement pdpSkuCode;
 

@@ -119,10 +119,9 @@ public class RegisterPageObjects extends Base {
 			registerUserFromLoginPage(firstName, lastName, email, password, confrimPassword);
 		} else if (userIsNotRegister == 0) {
 			System.out.println("user " + email + " is alrady Registerd");
-			;
 		}
 	}
-	public void registerUserIfNotAlreadyRegisteredFromHomePage(String firstName, String lastName, String email, String password,
+	public void registerUserIfNotAlreadyRegisteredFromHomePageAndLogout(String firstName, String lastName, String email, String password,
 			String confrimPassword) {
 		int userIsNotRegister = driver.findElements(By.xpath("//a[@class='ico-login']")).size();
 		if (userIsNotRegister > 0) {
@@ -132,6 +131,18 @@ public class RegisterPageObjects extends Base {
 			clickContinueBtn();
 		} else if (userIsNotRegister == 0) {
 			homepage.hpLogoutLink.click();
+		}
+	}
+	public void registerUserIfNotAlreadyRegisteredFromHomePageAndStayLoggedIn(String firstName, String lastName, String email, String password,
+			String confrimPassword) {
+		int userIsNotRegister = driver.findElements(By.xpath("//a[@class='ico-login']")).size();
+		if (userIsNotRegister > 0) {
+			homepage.navigateRegisterPage();
+			registerUserMandatoryFields(firstName, lastName, email, password, confrimPassword);
+			clickRegisterBtn();
+			clickContinueBtn();
+		} else if (userIsNotRegister == 0) {
+			System.out.println("user " + email + " is alrady Registerd");
 		}
 	}
 

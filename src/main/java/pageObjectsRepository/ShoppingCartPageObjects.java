@@ -58,6 +58,9 @@ public class ShoppingCartPageObjects extends Base {
 
 	@FindBy(xpath = "//span[text()='LV_511_JN']/parent::td[@class='sku']/following-sibling::td[@class='quantity']/child::input")
 	public WebElement shLevisQuantityField;
+	
+	@FindBy(xpath = "//input[@class='qty-input']")
+	public WebElement shQuantityField;
 
 	@FindBy(xpath = "//span[@class='sku-number']")
 	public WebElement shSkuCode;
@@ -67,6 +70,7 @@ public class ShoppingCartPageObjects extends Base {
 
 	@FindBy(xpath = "//p[contains(text(),'conditions')]")
 	public WebElement shTermsOfServiceDialog;
+
 	// Initiation
 	public ShoppingCartPageObjects() {
 		PageFactory.initElements(driver, this);
@@ -122,29 +126,27 @@ public class ShoppingCartPageObjects extends Base {
 		shCheckoutBtn.click();
 
 	}
+
 	public void removeAllItemsFromShoppingCart() {
 		List<WebElement> totalItemsShoppingCart = driver.findElements(By.xpath("//a[@class='product-name']"));
 		for (int i = 1; i <= totalItemsShoppingCart.size(); i++) {
 			shRemoveBtn.click();
 		}
 	}
-	
-	//verifications
 
-	public void sourcePageContains(String nameOfItem) {
-		String pageSource = driver.getPageSource();
-		// Provervam deka vo PageSource nema "Elegant Gemstone Necklace"
-		Assert.assertTrue((pageSource.contains(nameOfItem)));
-	}
+	// verifications
 
 	public void verifyCorectStartEndDate(String typeExpStartDate, String typeExpEndDate) {
 		String actDate = driver.findElement(By.xpath("//div[@class='rental-info']")).getText();
 		String expDate = "Start date: " + typeExpStartDate + "." + " End date: " + typeExpEndDate + ".";
 		Assert.assertEquals(actDate, expDate);
 	}
+
 	public void verifyShoppingCartIsEmpty() {
-		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='no-data']")).isDisplayed(), "Error: the Shopping cart is not empty");
+		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='no-data']")).isDisplayed(),
+				"Error: the Shopping cart is not empty");
 	}
+
 	public void verifyTermsOfServiceDialogWindow() {
 		Assert.assertTrue(shTermsOfServiceDialog.isDisplayed());
 	}

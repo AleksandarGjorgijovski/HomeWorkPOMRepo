@@ -73,7 +73,8 @@ public class ShoppingTestScripts extends Base {
 		homePage.hpShoppingCartLink.click();
 		shoppingCartPage.shLevisQuantityField.clear();
 
-		int randomQuantity = shoppingCartPage.generateRandomAndUpdateShoppingCart(15, shoppingCartPage.shLevisQuantityField);
+		int randomQuantity = shoppingCartPage.generateRandomAndUpdateShoppingCart(15,
+				shoppingCartPage.shLevisQuantityField);
 
 		comm.waitElement(wishlistPage.wSinglePrice);
 
@@ -118,6 +119,46 @@ public class ShoppingTestScripts extends Base {
 		pdp.addCartBtn.click();
 		homePage.shoppingCartMsgLink.click();
 		shoppingCartPage.shReadTermsLink.click();
+
+	}
+
+	@Test
+	public void VerifyAddProducInShoppingCartAsAGuestUser() {
+		homePage.hpBooksBanner.click();
+		plp.plpFahrenheitLink.click();
+		pdp.addCartBtn.click();
+		homePage.shoppingCartMsgLink.click();
+		comm.verifyByPageSourceContains(testData.SKUFahrenheit);
+	}
+
+	@Test
+	public void VerifyAddingProductInShoppingCartWithValidUser() {
+		homePage.navigateLoginPage();
+		loginPage.loginUserAndLoginBtn(testData.validEmail2, testData.validPassword);
+		registerPage.registerUserIfNotAlreadyRegisteredFromHomePageAndStayLoggedIn(testData.firstName,
+				testData.lastName, testData.validEmail2, testData.validPassword, testData.validConfrimPassword);
+		homePage.hpJewelryBanner.click();
+		plp.plpFlowerGirlBraceletLink.click();
+		pdp.addCartBtn.click();
+		comm.verifyByPageSourceContains(testData.SKUFlowerGirlBracelet);
+
+	}
+
+	@Test
+	public void VerifyItemQuantityIncreasedIfUserAddsSameItemInCartAgain() {
+		comm.mouseOverAndClickAction(homePage.hpApparelBanner, homePage.hpAccessoriesBanner);
+		plp.plpObeyPropagandaHatLink.click();
+		comm.selectFromDropManu(pdp.pdpSizeHatDropBox, testData.validHatSizeMedium);
+		pdp.addCartBtn.click();
+
+		comm.mouseOverAndClickAction(homePage.hpApparelBanner, homePage.hpAccessoriesBanner);
+		plp.plpObeyPropagandaHatLink.click();
+		comm.selectFromDropManu(pdp.pdpSizeHatDropBox, testData.validHatSizeMedium);
+		pdp.addCartBtn.click();
+
+		homePage.shoppingCartMsgLink.click();
+
+		Assert.assertEquals(shoppingCartPage.shQuantityField.getAttribute("value"), "2");
 
 	}
 

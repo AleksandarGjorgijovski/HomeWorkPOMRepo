@@ -156,7 +156,6 @@ public class ShoppingTestScripts extends Base {
 		pdp.addCartBtn.click();
 
 		homePage.shoppingCartMsgLink.click();
-
 		Assert.assertEquals(shoppingCartPage.shQuantityField.getAttribute("value"), "2");
 
 	}

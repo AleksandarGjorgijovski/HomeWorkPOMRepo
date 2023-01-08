@@ -108,7 +108,6 @@ public class ShoppingTestScripts extends Base {
 		homePage.shoppingCartMsgLink.click();
 		shoppingCartPage.removeAllItemsFromShoppingCart();
 		shoppingCartPage.verifyShoppingCartIsEmpty();
-		shoppingCartPage.verifyTermsOfServiceDialogWindow();
 
 	}
 

@@ -2,24 +2,24 @@
 <testng-results ignored="5" total="6" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-01-08T22:34:35 CET" name="Default suite" finished-at="2023-01-08T22:35:01 CET" duration-ms="25721">
+  <suite started-at="2023-01-08T22:49:16 CET" name="Default suite" finished-at="2023-01-08T22:49:26 CET" duration-ms="10663">
     <groups>
     </groups>
-    <test started-at="2023-01-08T22:34:35 CET" name="Default test" finished-at="2023-01-08T22:35:01 CET" duration-ms="25721">
+    <test started-at="2023-01-08T22:49:16 CET" name="Default test" finished-at="2023-01-08T22:49:26 CET" duration-ms="10663">
       <class name="testSuite.ShoppingTestScripts">
-        <test-method is-config="true" signature="start()[pri:0, instance:testSuite.ShoppingTestScripts@1ddf84b8]" started-at="2023-01-08T22:34:36 CET" name="start" finished-at="2023-01-08T22:34:48 CET" duration-ms="12824" status="PASS">
+        <test-method is-config="true" signature="start()[pri:0, instance:testSuite.ShoppingTestScripts@23529fee]" started-at="2023-01-08T22:49:16 CET" name="start" finished-at="2023-01-08T22:49:19 CET" duration-ms="3106" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- start -->
-        <test-method signature="VerifyItemQuantityIncreasedIfUserAddsSameItemInCartAgain()[pri:0, instance:testSuite.ShoppingTestScripts@1ddf84b8]" started-at="2023-01-08T22:34:48 CET" name="VerifyItemQuantityIncreasedIfUserAddsSameItemInCartAgain" finished-at="2023-01-08T22:34:57 CET" duration-ms="8786" status="PASS">
+        <test-method signature="VerifyItemQuantityIncreasedIfUserAddsSameItemInCartAgain()[pri:0, instance:testSuite.ShoppingTestScripts@23529fee]" started-at="2023-01-08T22:49:19 CET" name="VerifyItemQuantityIncreasedIfUserAddsSameItemInCartAgain" finished-at="2023-01-08T22:49:23 CET" duration-ms="4447" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- VerifyItemQuantityIncreasedIfUserAddsSameItemInCartAgain -->
-        <test-method is-config="true" signature="end(org.testng.ITestResult)[pri:0, instance:testSuite.ShoppingTestScripts@1ddf84b8]" started-at="2023-01-08T22:34:57 CET" name="end" finished-at="2023-01-08T22:35:01 CET" duration-ms="3908" status="PASS">
+        <test-method is-config="true" signature="end(org.testng.ITestResult)[pri:0, instance:testSuite.ShoppingTestScripts@23529fee]" started-at="2023-01-08T22:49:23 CET" name="end" finished-at="2023-01-08T22:49:26 CET" duration-ms="3093" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=VerifyItemQuantityIncreasedIfUserAddsSameItemInCartAgain status=SUCCESS method=ShoppingTestScripts.VerifyItemQuantityIncreasedIfUserAddsSameItemInCartAgain()[pri:0, instance:testSuite.ShoppingTestScripts@1ddf84b8] output={null}]]]>
+                <![CDATA[[TestResult name=VerifyItemQuantityIncreasedIfUserAddsSameItemInCartAgain status=SUCCESS method=ShoppingTestScripts.VerifyItemQuantityIncreasedIfUserAddsSameItemInCartAgain()[pri:0, instance:testSuite.ShoppingTestScripts@23529fee] output={null}]]]>
               </value>
             </param>
           </params>

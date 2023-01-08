@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="testSuite.PdpPomTestScripts">
+      <class name="testSuite.ShoppingTestScripts">
         <methods>
+          <include name="VerifyItemQuantityIncreasedIfUserAddsSameItemInCartAgain"/>
           <include name="start"/>
           <include name="end"/>
-          <include name="VerifyUserIsAbleToSelectVariationsOfTheProduct"/>
         </methods>
-      </class> <!-- testSuite.PdpPomTestScripts -->
+      </class> <!-- testSuite.ShoppingTestScripts -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

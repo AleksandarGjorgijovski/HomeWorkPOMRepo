@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="6" total="7" passed="1" failed="0" skipped="0">
+<testng-results ignored="5" total="6" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-12-19T12:26:28 CET" name="Default suite" finished-at="2022-12-19T12:28:19 CET" duration-ms="110291">
+  <suite started-at="2023-01-08T15:12:37 CET" name="Default suite" finished-at="2023-01-08T15:13:22 CET" duration-ms="45474">
     <groups>
     </groups>
-    <test started-at="2022-12-19T12:26:28 CET" name="Default test" finished-at="2022-12-19T12:28:19 CET" duration-ms="110291">
-      <class name="testSuite.LoginPomTestScripts">
-        <test-method is-config="true" signature="startTest()[pri:0, instance:testSuite.LoginPomTestScripts@1ddf84b8]" started-at="2022-12-19T12:26:29 CET" name="startTest" finished-at="2022-12-19T12:27:58 CET" duration-ms="89595" status="PASS">
+    <test started-at="2023-01-08T15:12:37 CET" name="Default test" finished-at="2023-01-08T15:13:22 CET" duration-ms="45474">
+      <class name="testSuite.PdpPomTestScripts">
+        <test-method is-config="true" signature="start()[pri:0, instance:testSuite.PdpPomTestScripts@5c30a9b0]" started-at="2023-01-08T15:12:37 CET" name="start" finished-at="2023-01-08T15:12:58 CET" duration-ms="21420" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- startTest -->
-        <test-method signature="verifyUserIsNotLoggedoutWhenPressingBackNavigationButton()[pri:0, instance:testSuite.LoginPomTestScripts@1ddf84b8]" started-at="2022-12-19T12:27:58 CET" name="verifyUserIsNotLoggedoutWhenPressingBackNavigationButton" finished-at="2022-12-19T12:28:11 CET" duration-ms="13206" status="PASS">
+        </test-method> <!-- start -->
+        <test-method signature="TC_DETAILS_003_ReviewWithLoggedInUser()[pri:0, instance:testSuite.PdpPomTestScripts@5c30a9b0]" started-at="2023-01-08T15:12:58 CET" name="TC_DETAILS_003_ReviewWithLoggedInUser" finished-at="2023-01-08T15:13:17 CET" duration-ms="19002" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- verifyUserIsNotLoggedoutWhenPressingBackNavigationButton -->
-        <test-method is-config="true" signature="endTest()[pri:0, instance:testSuite.LoginPomTestScripts@1ddf84b8]" started-at="2022-12-19T12:28:11 CET" name="endTest" finished-at="2022-12-19T12:28:19 CET" duration-ms="7185" status="PASS">
+        </test-method> <!-- TC_DETAILS_003_ReviewWithLoggedInUser -->
+        <test-method is-config="true" signature="end()[pri:0, instance:testSuite.PdpPomTestScripts@5c30a9b0]" started-at="2023-01-08T15:13:17 CET" name="end" finished-at="2023-01-08T15:13:22 CET" duration-ms="4771" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- endTest -->
-      </class> <!-- testSuite.LoginPomTestScripts -->
+        </test-method> <!-- end -->
+      </class> <!-- testSuite.PdpPomTestScripts -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

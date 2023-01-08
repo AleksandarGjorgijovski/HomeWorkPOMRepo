@@ -9,7 +9,7 @@ import base.Base;
 import testData.TestData;
 
 public class LoginPageObjects extends Base {
-	TestData userTestData = new TestData();
+	TestData testData = new TestData();
 
 	@FindBy(xpath = "//input[@id='Email']")
 	public WebElement lpEmailField;
@@ -61,7 +61,7 @@ public class LoginPageObjects extends Base {
 	public void loginForgetPassword(String userEmail) {
 		lpEmailField.sendKeys(userEmail);
 		lpForgotPasswordLink.click();
-		Assert.assertEquals(driver.getTitle(), userTestData.passwordRecoveryTitle);
+		Assert.assertEquals(driver.getTitle(), testData.passwordRecoveryTitle);
 		lpEmailField.sendKeys(userEmail);
 		lpRecoveryBtn.click();
 	}
@@ -70,7 +70,7 @@ public class LoginPageObjects extends Base {
 		Assert.assertTrue(hpLogoutLink.isDisplayed(),"User is not logged in successfully");
 	}
 	public void verifyUnsuccessfilLogin() {
-		Assert.assertEquals(driver.getTitle(), userTestData.loginPageTitle);
+		Assert.assertEquals(driver.getTitle(), testData.loginPageTitle);
 	}
 	public void verifyUnsuccessfulLoginEmpltyEmail() {
 		Assert.assertTrue(lpEmptyEmailMsg.isDisplayed(), "Error message is not displayed");
@@ -78,7 +78,7 @@ public class LoginPageObjects extends Base {
 		//Assert.assertFalse(lpEmptyEmailMsg.isDisplayed(), "Error message is displayed");
 	}
 	public void verifyLoginPageOpened() {
-		Assert.assertEquals(driver.getTitle(), userTestData.loginPageTitle);
+		Assert.assertEquals(driver.getTitle(), testData.loginPageTitle);
 	}
 	public void verifySuccesfulRecovery() {
 		Assert.assertTrue(lpRecoverySuccMsg.isDisplayed(), "Recovery was unsuccessful!");

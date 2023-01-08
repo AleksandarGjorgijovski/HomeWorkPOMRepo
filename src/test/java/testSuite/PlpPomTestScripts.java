@@ -13,9 +13,9 @@ import pageObjectsRepository.SearchPageObjects;
 import testData.TestData;
 
 public class PlpPomTestScripts extends Base {
-	HomePageObjects hp;
-	SearchPageObjects sp;
-	TestData td;
+	HomePageObjects homepage;
+	SearchPageObjects searchpage;
+	TestData testdata;
 	PlpObjects plp;
 	ComparelistPageObjects compareListPage;
 	CommonPOM comm;
@@ -23,9 +23,9 @@ public class PlpPomTestScripts extends Base {
 	@BeforeMethod
 	public void start() {
 		testSetup();
-		hp = new HomePageObjects();
-		sp = new SearchPageObjects();
-		td = new TestData();
+		homepage = new HomePageObjects();
+		searchpage = new SearchPageObjects();
+		testdata = new TestData();
 		plp = new PlpObjects();
 		compareListPage = new ComparelistPageObjects();
 		comm = new CommonPOM();
@@ -36,7 +36,7 @@ public class PlpPomTestScripts extends Base {
 	}
 	@Test
 	public void TC_PRODUCT_016_CheckIfBreadcrumbsMenuNavigateToCorespondingPage() {
-		hp.hpComputersBanner.click();
+		homepage.hpComputersBanner.click();
 		plp.plpSoftwareSubCategory.click();
 		plp.plpWindows8.click();
 		plp.verifyWindows8PageisDisplayed();
@@ -47,7 +47,7 @@ public class PlpPomTestScripts extends Base {
 	}
 	@Test
 	public void TC_PRODUCT_011_VerifyClearListOnComperasonPage(){
-		comm.mouseOverAndClickAction(hp.hpElectronicsBanner, plp.plpCellPhones);
+		comm.mouseOverAndClickAction(homepage.hpElectronicsBanner, plp.plpCellPhones);
 		comm.waitElement(plp.plpCompareHtcOne);
 		plp.plpCompareHtcOne.click();
 		comm.waitElement(plp.plpCompareNokia);
@@ -59,8 +59,8 @@ public class PlpPomTestScripts extends Base {
 	}
 	@Test
 	public void TC_PRODUCT_002_VerifyFilterOptionIsWorking() {
-		comm.waitElement(hp.hpComputersBanner);
-		comm.mouseOverAndClickAction(hp.hpComputersBanner, plp.plpNotebooksSubCategory);
+		comm.waitElement(homepage.hpComputersBanner);
+		comm.mouseOverAndClickAction(homepage.hpComputersBanner, plp.plpNotebooksSubCategory);
 		comm.waitElement(plp.plpFilterByIntelI5ChBox);
 		plp.plpFilterByIntelI5ChBox.click();
 		comm.waitElement(plp.plpFilterByMemory8GB);
@@ -68,15 +68,16 @@ public class PlpPomTestScripts extends Base {
 		comm.waitElement(plp.listViewbtn);
 		plp.listViewbtn.click();
 		comm.waitElement(plp.plpItemDescription);
-		plp.verifyWithForLoopDescription(td.filterItemByCpu5, td.filterByMemory8);
+		plp.verifyWithForLoopDescription(testdata.filterItemByCpu5, testdata.filterByMemory8);
 	}
 	@Test
 	public void TC_PRODUCT_002_VerifyFilterOptionIsWorkingForEachLoop() {
-		comm.mouseOverAndClickAction(hp.hpComputersBanner, plp.plpNotebooksSubCategory);
+		comm.mouseOverAndClickAction(homepage.hpComputersBanner, plp.plpNotebooksSubCategory);
 		plp.plpFilterByIntelI5ChBox.click();
 		plp.plpFilterByMemory8GB.click();
 		plp.listViewbtn.click();
 		comm.waitElement(plp.plpItemDescription);
-		plp.verifyWithForEachLoopDescription(td.filterItemByCpu5, td.filterByMemory8);
+		plp.verifyWithForEachLoopDescription(testdata.filterItemByCpu5, testdata.filterByMemory8);
 	}
+	
 }

@@ -12,8 +12,8 @@ import testData.TestData;
 
 public class RegisterPageObjects extends Base {
 	TestData userTestData = new TestData();
-	HomePageObjects hp = new HomePageObjects();
-	LoginPageObjects lp = new LoginPageObjects();
+	HomePageObjects homepage = new HomePageObjects();
+	LoginPageObjects loginpage = new LoginPageObjects();
 
 	// Defining WebElements
 	@FindBy(xpath = "//input[@id='gender-male']")
@@ -35,10 +35,10 @@ public class RegisterPageObjects extends Base {
 	public WebElement regYearManu;
 
 	@FindBy(xpath = "//input[@id='Email']")
-	WebElement regEmailField;
+	public WebElement regEmailField;
 
 	@FindBy(xpath = "//input[@id='Company']")
-	WebElement regCompanyField;
+	public WebElement regCompanyField;
 
 	@FindBy(xpath = "//input[@id='Password']")
 	public WebElement regPasswordField;
@@ -86,7 +86,7 @@ public class RegisterPageObjects extends Base {
 
 	public void registerNewUserWithRandomEmail(String firstName, String lastName, String Password,
 			String confirmPassword) {
-		hp.hpRegisterLink.click();
+		homepage.hpRegisterLink.click();
 		regFirstNameField.sendKeys(firstName);
 		regLastNameField.sendKeys(lastName);
 
@@ -102,7 +102,7 @@ public class RegisterPageObjects extends Base {
 
 	public void registerUserFromLoginPage(String firstName, String lastName, String email, String Password,
 			String confirmPassword) {
-		lp.lpRegisterLoginBtn.click();
+		loginpage.lpRegisterLoginBtn.click();
 		regFirstNameField.sendKeys(firstName);
 		regLastNameField.sendKeys(lastName);
 		regEmailField.sendKeys(email);
@@ -113,7 +113,6 @@ public class RegisterPageObjects extends Base {
 	}
 
 	public void registerUserIfNotAlreadyRegistered(String firstName, String lastName, String email, String password,
-
 			String confrimPassword) {
 		int userIsNotRegister = driver.findElements(By.xpath("//a[@class='ico-login']")).size();
 		if (userIsNotRegister > 0) {
@@ -123,12 +122,33 @@ public class RegisterPageObjects extends Base {
 			;
 		}
 	}
+	public void registerUserIfNotAlreadyRegisteredFromHomePage(String firstName, String lastName, String email, String password,
+			String confrimPassword) {
+		int userIsNotRegister = driver.findElements(By.xpath("//a[@class='ico-login']")).size();
+		if (userIsNotRegister > 0) {
+			homepage.navigateRegisterPage();
+			registerUserMandatoryFields(firstName, lastName, email, password, confrimPassword);
+			clickRegisterBtn();
+			clickContinueBtn();
+		} else if (userIsNotRegister == 0) {
+			homepage.hpLogoutLink.click();
+		}
+	}
 
 	public void randomGeneratorEmail(String firstName) {
 		Random random = new Random();
 		int randomInt = random.nextInt(1000);
 		regEmailField.sendKeys(firstName.toLowerCase() + randomInt + "@hotmail.com");
 	}
+	
+	public void clickRegisterBtn() {
+		registerBtn.click();
+	}
+	
+	public void clickContinueBtn () {
+		regContinueBtn.click();	
+	}
+		
 
 	// verifications
 	public void verifySuccessfulRegister() {

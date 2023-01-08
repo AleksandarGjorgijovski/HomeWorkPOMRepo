@@ -80,9 +80,9 @@ public class TestData {
 	public String screenshotName = "nopcommerce";
 	
 	//Rental dates
-	public String startMonth = "DECEMBER";
-	public String endMonth = "MARCH";
-	public String startYear = "2022";
+	public String startMonth = "AUGUST";
+	public String endMonth = "SEPTEMBER";
+	public String startYear = "2023";
 	public String endYear = "2023";
 	public String startDay = "20";
 	public String endDay = "31";

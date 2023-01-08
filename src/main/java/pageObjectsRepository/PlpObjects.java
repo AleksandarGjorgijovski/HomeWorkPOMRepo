@@ -13,8 +13,8 @@ import base.Base;
 import testData.TestData;
 
 public class PlpObjects extends Base {
-	TestData td = new TestData();
-	HomePageObjects hp = new HomePageObjects();
+	TestData testData = new TestData();
+	HomePageObjects homePage = new HomePageObjects();
 
 	// Defining Elements
 	@FindBy(xpath = "//a[@href='/notebooks']")
@@ -111,15 +111,15 @@ public class PlpObjects extends Base {
 
 	// verifications
 	public void verifyComputerPageisDisplayed() {
-		Assert.assertEquals(driver.getTitle(), td.computersPageTitle);
+		Assert.assertEquals(driver.getTitle(), testData.computersPageTitle);
 	}
 
 	public void verifyWindows8PageisDisplayed() {
-		Assert.assertEquals(driver.getTitle(), td.windows8PageTitle);
+		Assert.assertEquals(driver.getTitle(), testData.windows8PageTitle);
 	}
 
 	public void verifyHomePageisDisplayed() {
-		Assert.assertEquals(driver.getTitle(), td.homePageTitle);
+		Assert.assertEquals(driver.getTitle(), testData.homePageTitle);
 	}
 
 	public void verifyWithForLoopDescription(String filterCpu, String filterMemory) {

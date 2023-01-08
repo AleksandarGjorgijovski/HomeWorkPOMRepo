@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="testSuite.LoginPomTestScripts">
+      <class name="testSuite.PdpPomTestScripts">
         <methods>
-          <include name="verifyUserIsNotLoggedoutWhenPressingBackNavigationButton"/>
-          <include name="endTest"/>
-          <include name="startTest"/>
+          <include name="TC_DETAILS_003_ReviewWithLoggedInUser"/>
+          <include name="start"/>
+          <include name="end"/>
         </methods>
-      </class> <!-- testSuite.LoginPomTestScripts -->
+      </class> <!-- testSuite.PdpPomTestScripts -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

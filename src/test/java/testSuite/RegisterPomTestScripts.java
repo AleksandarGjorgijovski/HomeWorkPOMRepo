@@ -1,6 +1,5 @@
 package testSuite;
 
-
 import org.openqa.selenium.Keys;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -9,25 +8,25 @@ import org.testng.annotations.Test;
 import base.Base;
 import base.CommonPOM;
 import pageObjectsRepository.HomePageObjects;
+import pageObjectsRepository.LoginPageObjects;
 import pageObjectsRepository.RegisterPageObjects;
 import testData.TestData;
 
 public class RegisterPomTestScripts extends Base {
-	// se definiraat iminjata na Objectite sto ke se koristet za klasite
-	HomePageObjects hp;
-	RegisterPageObjects rp;
-	TestData td;
+	HomePageObjects homePage;
+	RegisterPageObjects registerPage;
+	TestData testData;
 	CommonPOM comm;
+	LoginPageObjects loginPage;
 
 	@BeforeMethod
 	public void start() {
-		// se zema metodot od Base za start na testiranje
 		testSetup();
-		// new Objects od site klasi sto ke se koristi vo ovaa klasa
-		hp = new HomePageObjects();
-		rp = new RegisterPageObjects();
-		td = new TestData();
+		homePage = new HomePageObjects();
+		registerPage = new RegisterPageObjects();
+		testData = new TestData();
 		comm = new CommonPOM();
+		loginPage = new LoginPageObjects();
 	}
 
 	@AfterMethod
@@ -37,61 +36,76 @@ public class RegisterPomTestScripts extends Base {
 
 	@Test
 	public void TC_REGISTER_002_RegisterUseOnlyMendatoryFields() {
-		hp.hpRegisterLink.click();
-		rp.registerUserMandatoryFields(td.firstName, td.lastName, td.validEmail1, td.validPassword,td.validConfrimPassword);
-		rp.registerBtn.click();
-		rp.regContinueBtn.click();
-		rp.verifySuccessfulRegister();
+		homePage.hpRegisterLink.click();
+		registerPage.registerUserMandatoryFields(testData.firstName, testData.lastName, testData.validEmail1,
+				testData.validPassword, testData.validConfrimPassword);
+		registerPage.registerBtn.click();
+		registerPage.regContinueBtn.click();
+		registerPage.verifySuccessfulRegister();
 	}
 
 	@Test
 	public void TC_REGISTER_002_1_RegisterUseAllFields() {
-		hp.navigateRegisterPage();
-		rp.registerUserOtherFields(td.companyName);
-		comm.selectFromDropManu(rp.regDayManu, td.validDay);
-		comm.selectFromDropManu(rp.regMonthManu, td.validMonth);
-		comm.selectFromDropManu(rp.regYearManu, td.validYear);
-		rp.registerUserMandatoryFields(td.firstName, td.lastName, td.validEmail, td.validPassword,
-				td.validConfrimPassword);
-		rp.registerBtn.click();
-		rp.regContinueBtn.click();
-		rp.verifySuccessfulRegister();
+		homePage.navigateRegisterPage();
+		registerPage.registerUserOtherFields(testData.companyName);
+		comm.selectFromDropManu(registerPage.regDayManu, testData.validDay);
+		comm.selectFromDropManu(registerPage.regMonthManu, testData.validMonth);
+		comm.selectFromDropManu(registerPage.regYearManu, testData.validYear);
+		registerPage.registerUserMandatoryFields(testData.firstName, testData.lastName, testData.validEmail,
+				testData.validPassword, testData.validConfrimPassword);
+		registerPage.registerBtn.click();
+		registerPage.regContinueBtn.click();
+		registerPage.verifySuccessfulRegister();
 	}
 
 	@Test
 	public void TC_REGISTER_004_RegisterNewUserWithExistingEmail() {
-		hp.navigateRegisterPage();
-		rp.registerUserMandatoryFields(td.firstName, td.lastName, td.validEmail4, td.validPassword,
-				td.validConfrimPassword);
-		rp.registerBtn.click();
-		rp.verifyUnuccessfulRegisterExistingEmail();
+		homePage.navigateLoginPage();
+		loginPage.loginUserAndLoginBtn(testData.validEmail2, testData.validPassword);
+		registerPage.registerUserIfNotAlreadyRegisteredFromHomePage(testData.firstName, testData.lastName,
+				testData.validEmail2, testData.validPassword, testData.validConfrimPassword);
+		homePage.navigateRegisterPage();
+		registerPage.registerUserMandatoryFields(testData.firstName, testData.lastName, testData.validEmail,
+				testData.validPassword, testData.validConfrimPassword);
+		registerPage.registerBtn.click();
+		registerPage.verifyUnuccessfulRegisterExistingEmail();
+
 	}
+
 	@Test
 	public void RegisterNewRandomUser() {
-		hp.hpRegisterLink.click();
-		rp.regFirstNameField.sendKeys(td.firstName);
-		rp.regLastNameField.sendKeys(td.lastName);
-		rp.randomGeneratorEmail(td.firstName);
-		rp.regPasswordField.sendKeys(td.validPassword);
-		rp.regConfirmPasswordField.sendKeys(td.validConfrimPassword);
-		rp.registerBtn.sendKeys(Keys.ENTER);
-		rp.regContinueBtn.sendKeys(Keys.ENTER);
-		rp.verifySuccessfulRegister();
+		homePage.navigateRegisterPage();
+		registerPage.regFirstNameField.sendKeys(testData.firstName);
+		registerPage.regLastNameField.sendKeys(testData.lastName);
+		registerPage.randomGeneratorEmail(testData.firstName);
+		registerPage.regPasswordField.sendKeys(testData.validPassword);
+		registerPage.regConfirmPasswordField.sendKeys(testData.validConfrimPassword);
+		registerPage.registerBtn.sendKeys(Keys.ENTER);
+		registerPage.regContinueBtn.sendKeys(Keys.ENTER);
+		registerPage.verifySuccessfulRegister();
+	}
+
+	@Test
+	public void VerifyUnsuccesfulRegisterByNotEnteringDataInAllFields() {
+		homePage.navigateRegisterPage();
+		registerPage.registerBtn.sendKeys(Keys.ENTER);
+		registerPage.verifyUnuccessfulRegister();
+	}
+
+	@Test
+	public void VerifyUnsiccesfulRegisterByNotProvidingConfirmPassword() {
+		homePage.navigateRegisterPage();
+		registerPage.registerUserMandatoryFields(testData.firstName, testData.lastName, testData.validEmail,
+				testData.validPassword, "");
+		registerPage.verifyUnuccessfulRegister();
+
+	}
+
+	@Test
+	public void VerifyUnsuccesfulRegisterInvalidEmail() {
+		homePage.navigateRegisterPage();
+		registerPage.registerUserMandatoryFields(testData.firstName, testData.lastName, testData.invalidEmail,
+				testData.validPassword, testData.validConfrimPassword);
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

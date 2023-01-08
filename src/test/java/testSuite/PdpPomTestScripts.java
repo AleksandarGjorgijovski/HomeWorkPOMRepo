@@ -1,6 +1,10 @@
 package testSuite;
 
+import java.awt.AWTException;
+import java.io.IOException;
+
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -49,11 +53,14 @@ public class PdpPomTestScripts extends Base {
 	}
 
 	@AfterMethod
-	public void end() {
+	public void end(ITestResult result) throws IOException, AWTException {
+		if (ITestResult.FAILURE == result.getStatus()) {
+			captureScreenshotURL(result.getName());
+		}
 		testTeardown();
 	}
 
-	@Test
+	@Test(enabled = true)
 	public void TC_DETAILS_013_VerifyDonwloadSample() throws InterruptedException {
 		homePage.hpDigitalDownloadsBanner.click();
 		plp.plpNightVisionLink.click();
@@ -64,7 +71,7 @@ public class PdpPomTestScripts extends Base {
 
 	}
 
-	@Test
+	@Test(enabled = true)
 	public void TC_DETAILS_003_ReviewWithLoggedInUser() {
 		homePage.navigateLoginPage();
 		loginPage.loginUserAndLoginBtn(testData.validEmail, testData.validPassword);
@@ -129,7 +136,7 @@ public class PdpPomTestScripts extends Base {
 		pdp.addCartBtn.click();
 		homePage.shoppingCartMsgLink.click();
 		shoppingCartPage.sourcePageContains("Elegant");
-		shoppingCartPage.verifyCorectStartEndDate("7/20/2023", "8/31/2023");
+		shoppingCartPage.verifyCorectStartEndDate("8/20/2023", "9/30/2023");
 
 	}
 
@@ -147,8 +154,20 @@ public class PdpPomTestScripts extends Base {
 		pdp.addCartBtn.click();
 		homePage.shoppingCartMsgLink.click();
 		shoppingCartPage.sourcePageContains("Elegant");
-		shoppingCartPage.verifyCorectStartEndDate("7/20/2023", "8/31/2023");
+		shoppingCartPage.verifyCorectStartEndDate("8/20/2023", "9/30/2023");
 
 	}
 
+	@Test
+	public void VerifyUserIsAbleToSelectVariationsOfTheProduct() {
+		comm.mouseOverAndClickAction(homePage.hpComputersBanner, homePage.hpDesktopBanner);
+		plp.plpBuildYourOwnComputer.click();
+		comm.selectFromDropManu(pdp.pdpProcessorDropMenu, testData.processor2_2GHZ);
+		comm.selectFromDropManu(pdp.pdpRamDropMenu, testData.ram8GB);
+		pdp.pdpHDD400RadioBtn.click();
+		pdp.pdpVistaPremiumRadioBtn.click();
+		pdp.addCartBtn.click();
+		Assert.assertTrue(homePage.shoppingCartMsgLink.isDisplayed());
+
+	}
 }

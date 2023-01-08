@@ -1,6 +1,10 @@
 package testSuite;
 
+import java.awt.AWTException;
+import java.io.IOException;
+
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -18,58 +22,62 @@ import pageObjectsRepository.WishlistPageObjects;
 import testData.TestData;
 
 public class ShoppingTestScripts extends Base {
-	TestData td;
-	HomePageObjects hp;
+	TestData testData;
+	HomePageObjects homePage;
 	PlpObjects plp;
 	PdpObjects pdp;
-	ShoppingCartPageObjects shp;
-	WishlistPageObjects wh;
-	SearchPageObjects sp;
+	ShoppingCartPageObjects shoppingCartPage;
+	WishlistPageObjects wishlistPage;
+	SearchPageObjects searchPage;
 	CommonPOM comm;
-	LoginPageObjects lp;
-	RegisterPageObjects rp;
+	LoginPageObjects loginPage;
+	RegisterPageObjects registerPage;
 
 	@BeforeMethod
 	public void start() {
 		testSetup();
-		td = new TestData();
-		hp = new HomePageObjects();
+		testData = new TestData();
+		homePage = new HomePageObjects();
 		plp = new PlpObjects();
 		pdp = new PdpObjects();
-		shp = new ShoppingCartPageObjects();
-		wh = new WishlistPageObjects();
-		sp = new SearchPageObjects();
+		shoppingCartPage = new ShoppingCartPageObjects();
+		wishlistPage = new WishlistPageObjects();
+		searchPage = new SearchPageObjects();
 		comm = new CommonPOM();
-		lp = new LoginPageObjects();
-		rp = new RegisterPageObjects();
+		loginPage = new LoginPageObjects();
+		registerPage = new RegisterPageObjects();
 
 	}
 
 	@AfterMethod
-	public void end() {
+	public void end(ITestResult result) throws IOException, AWTException {
+		if (ITestResult.FAILURE == result.getStatus()) {
+			captureScreenshotURL(result.getName());
+		}
 		testTeardown();
 	}
+
 	@Test
 	public void TC_CART_022_CheckIfThePriceChangesAccordingTheDiscountSimplified() {
-		comm.waitElement(hp.hpApparelBanner);
-		comm.mouseOverAndClickAction(hp.hpApparelBanner, hp.hpClothingBanner);
+		comm.waitElement(homePage.hpApparelBanner);
+		comm.mouseOverAndClickAction(homePage.hpApparelBanner, homePage.hpClothingBanner);
 		pdp.levisLink.click();
 		comm.waitElement(pdp.pdpSkuCode);
 
-		Integer originalPriceprice435Num = shp.convertTablePriceToInteger(pdp.levisTabelPrice435);
-		Integer tabelPriceprice40Num = shp.convertTablePriceToInteger(pdp.levisTabelPrice40);
-		Integer tabelPriceprice38Num = shp.convertTablePriceToInteger(pdp.levisTabelPrice38);
-		Integer tabelPriceprice35Num = shp.convertTablePriceToInteger(pdp.levisTabelPrice35);
+		Integer originalPriceprice435Num = shoppingCartPage.convertTablePriceToInteger(pdp.levisTabelPrice435);
+		Integer tabelPriceprice40Num = shoppingCartPage.convertTablePriceToInteger(pdp.levisTabelPrice40);
+		Integer tabelPriceprice38Num = shoppingCartPage.convertTablePriceToInteger(pdp.levisTabelPrice38);
+		Integer tabelPriceprice35Num = shoppingCartPage.convertTablePriceToInteger(pdp.levisTabelPrice35);
 
 		pdp.addCartBtn.click();
-		hp.hpShoppingCartLink.click();
-		shp.shLevisQuantityField.clear();
+		homePage.hpShoppingCartLink.click();
+		shoppingCartPage.shLevisQuantityField.clear();
 
-		int randomQuantity = shp.generateRandomAndUpdateShoppingCart(15, shp.shLevisQuantityField);
+		int randomQuantity = shoppingCartPage.generateRandomAndUpdateShoppingCart(15, shoppingCartPage.shLevisQuantityField);
 
-		comm.waitElement(wh.wSinglePrice);
+		comm.waitElement(wishlistPage.wSinglePrice);
 
-		Integer singlePriceShoppingCart = shp.convertPriceShoppingCartToInteger(wh.wSinglePrice);
+		Integer singlePriceShoppingCart = shoppingCartPage.convertPriceShoppingCartToInteger(wishlistPage.wSinglePrice);
 
 		if (randomQuantity == 1 && randomQuantity == 2) {
 			Assert.assertEquals(singlePriceShoppingCart, originalPriceprice435Num);
@@ -87,7 +95,7 @@ public class ShoppingTestScripts extends Base {
 
 	@Test
 	public void verifyShoppingCartRemoveItem() {
-		hp.hpBooksBanner.click();
+		homePage.hpBooksBanner.click();
 		plp.plpFahrenheitLink.click();
 		pdp.addCartBtn.click();
 		comm.goBack();
@@ -96,20 +104,20 @@ public class ShoppingTestScripts extends Base {
 		comm.goBack();
 		plp.plpPrideAndPrejudiceLink.click();
 		pdp.addCartBtn.click();
-		hp.shoppingCartMsgLink.click();
-		shp.removeAllItemsFromShoppingCart();
-		shp.verifyShoppingCartIsEmpty();
-		shp.verifyTermsOfServiceDialogWindow();
+		homePage.shoppingCartMsgLink.click();
+		shoppingCartPage.removeAllItemsFromShoppingCart();
+		shoppingCartPage.verifyShoppingCartIsEmpty();
+		shoppingCartPage.verifyTermsOfServiceDialogWindow();
 
 	}
 
 	@Test
 	public void verifyTermsOfServiceLink() {
-		hp.hpJewelryBanner.click();
+		homePage.hpJewelryBanner.click();
 		plp.plpFlowerGirlBraceletLink.click();
 		pdp.addCartBtn.click();
-		hp.shoppingCartMsgLink.click();
-		shp.shReadTermsLink.click();
+		homePage.shoppingCartMsgLink.click();
+		shoppingCartPage.shReadTermsLink.click();
 
 	}
 

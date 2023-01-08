@@ -5,9 +5,9 @@
     <classes>
       <class name="testSuite.PdpPomTestScripts">
         <methods>
-          <include name="TC_DETAILS_003_ReviewWithLoggedInUser"/>
           <include name="start"/>
           <include name="end"/>
+          <include name="VerifyUserIsAbleToSelectVariationsOfTheProduct"/>
         </methods>
       </class> <!-- testSuite.PdpPomTestScripts -->
     </classes>

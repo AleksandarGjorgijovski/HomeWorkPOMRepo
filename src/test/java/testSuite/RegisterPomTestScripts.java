@@ -1,6 +1,10 @@
 package testSuite;
 
+import java.awt.AWTException;
+import java.io.IOException;
+
 import org.openqa.selenium.Keys;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -30,7 +34,11 @@ public class RegisterPomTestScripts extends Base {
 	}
 
 	@AfterMethod
-	public void end() {
+	public void end(ITestResult result) throws IOException, AWTException{
+		if(ITestResult.FAILURE==result.getStatus())
+		{
+			captureScreenshotURL(result.getName());
+		}
 		testTeardown();
 	}
 
@@ -96,7 +104,7 @@ public class RegisterPomTestScripts extends Base {
 	public void VerifyUnsiccesfulRegisterByNotProvidingConfirmPassword() {
 		homePage.navigateRegisterPage();
 		registerPage.registerUserMandatoryFields(testData.firstName, testData.lastName, testData.validEmail,
-				testData.validPassword, "");
+				testData.validPassword, testData.emptyConfirmPassword);
 		registerPage.verifyUnuccessfulRegister();
 
 	}

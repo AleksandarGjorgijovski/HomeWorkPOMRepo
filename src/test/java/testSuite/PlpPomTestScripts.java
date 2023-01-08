@@ -1,5 +1,9 @@
 package testSuite;
 
+import java.awt.AWTException;
+import java.io.IOException;
+
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -19,7 +23,7 @@ public class PlpPomTestScripts extends Base {
 	PlpObjects plp;
 	ComparelistPageObjects compareListPage;
 	CommonPOM comm;
-	
+
 	@BeforeMethod
 	public void start() {
 		testSetup();
@@ -30,10 +34,15 @@ public class PlpPomTestScripts extends Base {
 		compareListPage = new ComparelistPageObjects();
 		comm = new CommonPOM();
 	}
+
 	@AfterMethod
-	public void end() {
+	public void end(ITestResult result) throws IOException, AWTException {
+		if (ITestResult.FAILURE == result.getStatus()) {
+			captureScreenshotURL(result.getName());
+		}
 		testTeardown();
 	}
+
 	@Test
 	public void TC_PRODUCT_016_CheckIfBreadcrumbsMenuNavigateToCorespondingPage() {
 		homepage.hpComputersBanner.click();
@@ -45,8 +54,9 @@ public class PlpPomTestScripts extends Base {
 		plp.plpHomeBreadcrumbs.click();
 		plp.verifyHomePageisDisplayed();
 	}
+
 	@Test
-	public void TC_PRODUCT_011_VerifyClearListOnComperasonPage(){
+	public void TC_PRODUCT_011_VerifyClearListOnComperasonPage() {
 		comm.mouseOverAndClickAction(homepage.hpElectronicsBanner, plp.plpCellPhones);
 		comm.waitElement(plp.plpCompareHtcOne);
 		plp.plpCompareHtcOne.click();
@@ -57,6 +67,7 @@ public class PlpPomTestScripts extends Base {
 		compareListPage.compListClearListBtn.click();
 		compareListPage.verifyEmptyCompareListPage();
 	}
+
 	@Test
 	public void TC_PRODUCT_002_VerifyFilterOptionIsWorking() {
 		comm.waitElement(homepage.hpComputersBanner);
@@ -70,6 +81,7 @@ public class PlpPomTestScripts extends Base {
 		comm.waitElement(plp.plpItemDescription);
 		plp.verifyWithForLoopDescription(testdata.filterItemByCpu5, testdata.filterByMemory8);
 	}
+
 	@Test
 	public void TC_PRODUCT_002_VerifyFilterOptionIsWorkingForEachLoop() {
 		comm.mouseOverAndClickAction(homepage.hpComputersBanner, plp.plpNotebooksSubCategory);
@@ -79,5 +91,5 @@ public class PlpPomTestScripts extends Base {
 		comm.waitElement(plp.plpItemDescription);
 		plp.verifyWithForEachLoopDescription(testdata.filterItemByCpu5, testdata.filterByMemory8);
 	}
-	
+
 }

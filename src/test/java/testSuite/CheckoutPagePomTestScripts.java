@@ -26,33 +26,33 @@ import pageObjectsRepository.WishlistPageObjects;
 import testData.TestData;
 
 public class CheckoutPagePomTestScripts extends Base{
-	TestData td;
+	TestData testData;
 	CommonPOM comm;
-	HomePageObjects hp;
+	HomePageObjects homePage;
 	PlpObjects plp;
 	PdpObjects pdp;
-	ShoppingCartPageObjects shp;
-	WishlistPageObjects wh;
-	SearchPageObjects sp;
-	LoginPageObjects lp;
-	CheckoutPageObjects ch;
-	RegisterPageObjects rp;
+	ShoppingCartPageObjects shoppingCartPage;
+	WishlistPageObjects wishlistPage;
+	SearchPageObjects searchPage;
+	LoginPageObjects loginPage;
+	CheckoutPageObjects checkoutPage;
+	RegisterPageObjects registerPage;
 
 	
 	@BeforeMethod
 	public void start(Method testCase) {
 		testSetup();
-		td = new TestData();
+		testData = new TestData();
 		comm = new CommonPOM();
-		hp = new HomePageObjects();
+		homePage = new HomePageObjects();
 		plp = new PlpObjects();
 		pdp = new PdpObjects();
-		shp = new ShoppingCartPageObjects();
-		wh = new WishlistPageObjects();
-		sp = new SearchPageObjects();
-		lp = new LoginPageObjects();
-		ch = new CheckoutPageObjects();
-		rp = new RegisterPageObjects();
+		shoppingCartPage = new ShoppingCartPageObjects();
+		wishlistPage = new WishlistPageObjects();
+		searchPage = new SearchPageObjects();
+		loginPage = new LoginPageObjects();
+		checkoutPage = new CheckoutPageObjects();
+		registerPage = new RegisterPageObjects();
 		
 		//precondition for TC_CHECKOUT_004_CheckIfErrorMessageIsDisplayedWhenUserEntersInvalidData()
 //		if(testCase.getName().equals("TC_CHECKOUT_004_CheckIfErrorMessageIsDisplayedWhenUserEntersInvalidData()")) { 
@@ -65,122 +65,122 @@ public class CheckoutPagePomTestScripts extends Base{
 		{
 			captureScreenshotURL(result.getName());
 		}
-		driver.quit();
+		testTeardown();
 	}
 	@Test
 	public void TC_CHECKOUT_011_ReturningCustomerDifferentBillingAndShippingAddress() throws IOException, AWTException {
-		comm.waitElement(hp.hpComputersBanner);
-		comm.mouseOverAndClickAction(hp.hpComputersBanner, hp.hpSoftWareBanner);
+		comm.waitElement(homePage.hpComputersBanner);
+		comm.mouseOverAndClickAction(homePage.hpComputersBanner, homePage.hpSoftWareBanner);
 		comm.waitElement(plp.plpWindows8addToCart);
 		plp.addToCartFromPLP(plp.plpWindows8addToCart);
-		hp.hpShoppingCartLink.click();
-		comm.waitElement(shp.shTermsChbox);
-		shp.acceptTermsAndCheckoutBtn();
-		lp.loginUserAndLoginBtn(td.validEmail, td.validPassword);
-		rp.registerUserIfNotAlreadyRegistered(td.firstName, td.lastName, td.validEmail, td.validPassword, td.validConfrimPassword);
-		shp.acceptTermsAndCheckoutBtn();
-		ch.chBillShipToTheSameAddressCheckbox.click();
-		ch.ifBillingAddressBookIsPopulatedOrNot(0, td.validMacedoniaValue, td.validCityBitola, td.validAddress, td.validZipCode, td.validPhoneNumber);
-		comm.waitElement(ch.chSelectShippingAddressBook);
-		comm.selectFromDropManuByLastIndex(ch.chSelectShippingAddressBook);
-		ch.validShippingAddressMandatoryField(td.validMacedoniaValue, td.validCityPrilep, td.validShipAddress, td.validShipZipCode, td.validShipPhoneNumber);
+		homePage.hpShoppingCartLink.click();
+		comm.waitElement(shoppingCartPage.shTermsChbox);
+		shoppingCartPage.acceptTermsAndCheckoutBtn();
+		loginPage.loginUserAndLoginBtn(testData.validEmail, testData.validPassword);
+		registerPage.registerUserIfNotAlreadyRegistered(testData.firstName, testData.lastName, testData.validEmail, testData.validPassword, testData.validConfrimPassword);
+		shoppingCartPage.acceptTermsAndCheckoutBtn();
+		checkoutPage.chBillShipToTheSameAddressCheckbox.click();
+		checkoutPage.ifBillingAddressBookIsPopulatedOrNot(0, testData.validMacedoniaValue, testData.validCityBitola, testData.validAddress, testData.validZipCode, testData.validPhoneNumber);
+		comm.waitElement(checkoutPage.chSelectShippingAddressBook);
+		comm.selectFromDropManuByLastIndex(checkoutPage.chSelectShippingAddressBook);
+		checkoutPage.validShippingAddressMandatoryField(testData.validMacedoniaValue, testData.validCityPrilep, testData.validShipAddress, testData.validShipZipCode, testData.validShipPhoneNumber);
 		captureScreenshotURL("shippingAddress");
 	//	captureFullScreenshot("shippingAddress");
-		ch.shippingMethod(ch.chShipMethodGorund);
-		comm.waitElement(ch.chPayMethodCard);
-		ch.paymentMethod(ch.chPayMethodCard);
-		comm.waitElement(ch.chPayInfoConBtn);
-		ch.paymentInformation(td.firstName, td.lastName, td.validCardNumber, td.validExpireMonth, td.validExpireYear, td.validCardCode);
-		comm.waitElement(ch.chConfirmOrderConBtn);
-		ch.chConfirmOrderConBtn.click();
-		comm.waitElement(ch.chOrderCopmliteConBtn);
-		ch.chOrderCopmliteConBtn.click();
-		comm.waitElement(ch.chEmpltyShoppingCart);
-		ch.verifySuccessfulCheckoutAndEmpltyShoppingCart();
+		checkoutPage.shippingMethod(checkoutPage.chShipMethodGorund);
+		comm.waitElement(checkoutPage.chPayMethodCard);
+		checkoutPage.paymentMethod(checkoutPage.chPayMethodCard);
+		comm.waitElement(checkoutPage.chPayInfoConBtn);
+		checkoutPage.paymentInformation(testData.firstName, testData.lastName, testData.validCardNumber, testData.validExpireMonth, testData.validExpireYear, testData.validCardCode);
+		comm.waitElement(checkoutPage.chConfirmOrderConBtn);
+		checkoutPage.chConfirmOrderConBtn.click();
+		comm.waitElement(checkoutPage.chOrderCopmliteConBtn);
+		checkoutPage.chOrderCopmliteConBtn.click();
+		comm.waitElement(checkoutPage.chEmpltyShoppingCart);
+		checkoutPage.verifySuccessfulCheckoutAndEmpltyShoppingCart();
 	}
 	@Test
 	public void TC_CHECKOUT_007_CheckoutAsGuestAndPayWithCheckMoneyOrder() {
-		comm.waitElement(hp.hpComputersBanner);
-		comm.mouseOverAndClickAction(hp.hpComputersBanner, hp.hpSoftWareBanner);
+		comm.waitElement(homePage.hpComputersBanner);
+		comm.mouseOverAndClickAction(homePage.hpComputersBanner, homePage.hpSoftWareBanner);
 		comm.waitElement(plp.plpWindows8addToCart);
 		plp.addToCartFromPLP(plp.plpWindows8addToCart);
-		hp.hpShoppingCartLink.click();
-		comm.waitElement(shp.shTermsChbox);
-		shp.acceptTermsAndCheckoutBtn();
-		ch.chCheckoutAsGuest.click();
-		ch.validBillAddressAllMandatoryField(td.firstName, td.lastName, td.validEmail6, td.validMacedoniaValue, td.validCityBitola, td.validAddress, td.validZipCode, td.validPhoneNumber);
-		comm.waitElement(ch.chShipMethodGorund);
-		ch.shippingMethod(ch.chShipMethodGorund);
-		comm.waitElement(ch.chPayMethodCheck);
-		ch.chPayMethodCheck.click();
-		ch.chPayMethodConBtn.click();
-		comm.waitElement(ch.chPayInfoConBtn);
-		ch.chPayInfoConBtn.click();
-		comm.waitElement(ch.chConfirmOrderConBtn);
-		ch.chConfirmOrderConBtn.click();
-		comm.waitElement(ch.chOrderCopmliteConBtn);
-		ch.chOrderCopmliteConBtn.click();
-		comm.waitElement(ch.chEmpltyShoppingCart);
-		ch.verifySuccessfulCheckoutAndEmpltyShoppingCart();
+		homePage.hpShoppingCartLink.click();
+		comm.waitElement(shoppingCartPage.shTermsChbox);
+		shoppingCartPage.acceptTermsAndCheckoutBtn();
+		checkoutPage.chCheckoutAsGuest.click();
+		checkoutPage.validBillAddressAllMandatoryField(testData.firstName, testData.lastName, testData.validEmail6, testData.validMacedoniaValue, testData.validCityBitola, testData.validAddress, testData.validZipCode, testData.validPhoneNumber);
+		comm.waitElement(checkoutPage.chShipMethodGorund);
+		checkoutPage.shippingMethod(checkoutPage.chShipMethodGorund);
+		comm.waitElement(checkoutPage.chPayMethodCheck);
+		checkoutPage.chPayMethodCheck.click();
+		checkoutPage.chPayMethodConBtn.click();
+		comm.waitElement(checkoutPage.chPayInfoConBtn);
+		checkoutPage.chPayInfoConBtn.click();
+		comm.waitElement(checkoutPage.chConfirmOrderConBtn);
+		checkoutPage.chConfirmOrderConBtn.click();
+		comm.waitElement(checkoutPage.chOrderCopmliteConBtn);
+		checkoutPage.chOrderCopmliteConBtn.click();
+		comm.waitElement(checkoutPage.chEmpltyShoppingCart);
+		checkoutPage.verifySuccessfulCheckoutAndEmpltyShoppingCart();
 	}
 	@Test
 	public void TC_CHECKOUT_004_CheckIfErrorMessageIsDisplayedWhenUserEntersInvalidData() {
-		comm.waitElement(hp.hpComputersBanner);
-		comm.mouseOverAndClickAction(hp.hpComputersBanner, hp.hpSoftWareBanner);
+		comm.waitElement(homePage.hpComputersBanner);
+		comm.mouseOverAndClickAction(homePage.hpComputersBanner, homePage.hpSoftWareBanner);
 		comm.waitElement(plp.plpWindows8addToCart);
 		comm.scrollTo(plp.plpWindows8addToCart);
 		plp.addToCartFromPLP(plp.plpWindows8addToCart);
-		hp.hpShoppingCartLink.click();
-		comm.waitElement(shp.shTermsChbox);
+		homePage.hpShoppingCartLink.click();
+		comm.waitElement(shoppingCartPage.shTermsChbox);
 		captureScreenshot("shopping cart");
-		shp.acceptTermsAndCheckoutBtn();
-		ch.chCheckoutAsGuest.click();
-		ch.validBillAddressAllMandatoryField(td.firstName, td.lastName, td.incorrectEmail, td.validMacedoniaValue, td.validCityBitola, td.validAddress, td.validZipCode, td.validPhoneNumber);
+		shoppingCartPage.acceptTermsAndCheckoutBtn();
+		checkoutPage.chCheckoutAsGuest.click();
+		checkoutPage.validBillAddressAllMandatoryField(testData.firstName, testData.lastName, testData.incorrectEmail, testData.validMacedoniaValue, testData.validCityBitola, testData.validAddress, testData.validZipCode, testData.validPhoneNumber);
 //		Assert.assertTrue(ch.chShipMetodConBtn.isDisplayed(), "User is not navigated to Shopping Method");
 			//Proverka
-		Assert.assertFalse(ch.chShipMetodConBtn.isDisplayed(), "User is navigated to Shopping Method");
+		Assert.assertFalse(checkoutPage.chShipMetodConBtn.isDisplayed(), "User is navigated to Shopping Method");
 
 	}
 	@Test
 	public void TC_CHECKOUT_005_verifyScreenshotWhereTheMistakeIsMade() {
 		/*Check if error message is displayed when user doesn't enter data in all of 
 		the required filed in billing address while checking out as guest*/
-		comm.waitElement(hp.hpComputersBanner);
-		comm.mouseOverAndClickAction(hp.hpComputersBanner, hp.hpSoftWareBanner);
+		comm.waitElement(homePage.hpComputersBanner);
+		comm.mouseOverAndClickAction(homePage.hpComputersBanner, homePage.hpSoftWareBanner);
 		comm.waitElement(plp.plpWindows8addToCart);
 		plp.addToCartFromPLP(plp.plpWindows8addToCart);
-		hp.hpShoppingCartLink.click();
-		comm.waitElement(shp.shTermsChbox);
-		shp.acceptTermsAndCheckoutBtn();
-		ch.chCheckoutAsGuest.click();
-		ch.chBillContinueBtn.click();
+		homePage.hpShoppingCartLink.click();
+		comm.waitElement(shoppingCartPage.shTermsChbox);
+		shoppingCartPage.acceptTermsAndCheckoutBtn();
+		checkoutPage.chCheckoutAsGuest.click();
+		checkoutPage.chBillContinueBtn.click();
 		
-		Assert.assertTrue(ch.chShipMetodConBtn.isDisplayed(), "Required mandatory Billing Address fields are not properly populated");
+		Assert.assertTrue(checkoutPage.chShipMetodConBtn.isDisplayed(), "Required mandatory Billing Address fields are not properly populated");
 	}
 	@Test
 	public void VerifyInvalidCheckoutWithBlankPaymentInformation() {
-		hp.hpLoginLink.click();
-		lp.loginUserAndLoginBtn(td.validEmail, td.validPassword);
-		rp.registerUserIfNotAlreadyRegistered(td.firstName, td.lastName, td.validEmail, td.validPassword, td.validConfrimPassword);
-		comm.mouseOverAndClickAction(hp.hpComputersBanner, hp.hpDesktopBanner);
+		homePage.hpLoginLink.click();
+		loginPage.loginUserAndLoginBtn(testData.validEmail, testData.validPassword);
+		registerPage.registerUserIfNotAlreadyRegistered(testData.firstName, testData.lastName, testData.validEmail, testData.validPassword, testData.validConfrimPassword);
+		comm.mouseOverAndClickAction(homePage.hpComputersBanner, homePage.hpDesktopBanner);
 		comm.waitElement(plp.plpBuildYourOwnComputer);
 		plp.plpBuildYourOwnComputer.click();
-		comm.selectFromDropManu(pdp.pdpProcessorDropMenu, td.processor25GHz);
-		comm.selectFromDropManu(pdp.pdpRamDropMenu, td.ram8GB);
+		comm.selectFromDropManu(pdp.pdpProcessorDropMenu, testData.processor2_5GHz);
+		comm.selectFromDropManu(pdp.pdpRamDropMenu, testData.ram8GB);
 		pdp.pdpHDD400RadioBtn.click();
 		pdp.pdpVistaPremiumRadioBtn.click();
 		pdp.addCartBtn.click();
-		hp.shoppingCartMsgLink.click();
-		shp.acceptTermsAndCheckoutBtn();
-		ch.ifBillingAddressBookIsPopulatedOrNot(0, td.validMacedoniaValue, td.validCityBitola, td.validAddress, td.validZipCode, td.validPhoneNumber);
-		comm.waitElement(ch.chShipMethodGorund);
-		ch.shippingMethod(ch.chShipMethodGorund);
-		comm.waitElement(ch.chPayMethodCard);
-		ch.paymentMethod(ch.chPayMethodCard);
-		comm.waitElement(ch.chPayInfoConBtn);
-		ch.chPayInfoConBtn.click();
-		comm.waitElement(ch.chPaymentInformationErrorMsg);
-		Assert.assertTrue(ch.chPaymentInformationErrorMsg.isDisplayed());
+		homePage.shoppingCartMsgLink.click();
+		shoppingCartPage.acceptTermsAndCheckoutBtn();
+		checkoutPage.ifBillingAddressBookIsPopulatedOrNot(0, testData.validMacedoniaValue, testData.validCityBitola, testData.validAddress, testData.validZipCode, testData.validPhoneNumber);
+		comm.waitElement(checkoutPage.chShipMethodGorund);
+		checkoutPage.shippingMethod(checkoutPage.chShipMethodGorund);
+		comm.waitElement(checkoutPage.chPayMethodCard);
+		checkoutPage.paymentMethod(checkoutPage.chPayMethodCard);
+		comm.waitElement(checkoutPage.chPayInfoConBtn);
+		checkoutPage.chPayInfoConBtn.click();
+		comm.waitElement(checkoutPage.chPaymentInformationErrorMsg);
+		Assert.assertTrue(checkoutPage.chPaymentInformationErrorMsg.isDisplayed());
 		
 	}
 }

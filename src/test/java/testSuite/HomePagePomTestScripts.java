@@ -1,5 +1,9 @@
 package testSuite;
 
+import java.awt.AWTException;
+import java.io.IOException;
+
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -12,49 +16,53 @@ import pageObjectsRepository.RegisterPageObjects;
 import testData.TestData;
 
 public class HomePagePomTestScripts extends Base {
-	HomePageObjects hp;
-	LoginPageObjects lp;
-	TestData td;
-	RegisterPageObjects rp;
+	HomePageObjects homePage;
+	LoginPageObjects loginPage;
+	TestData testData;
+	RegisterPageObjects registerPage;
 	CommonPOM comm;
 
 	@BeforeMethod
 	public void start() {
 		testSetup();
-		hp = new HomePageObjects();
-		lp = new LoginPageObjects();
-		td = new TestData();
-		rp = new RegisterPageObjects();
+		homePage = new HomePageObjects();
+		loginPage = new LoginPageObjects();
+		testData = new TestData();
+		registerPage = new RegisterPageObjects();
 		comm = new CommonPOM();
 	}
 
 	@AfterMethod
-	public void end() {
+	public void end(ITestResult result) throws IOException, AWTException {
+		if (ITestResult.FAILURE == result.getStatus()) {
+			captureScreenshotURL(result.getName());
+		}
 		testTeardown();
 	}
 
 	@Test
 	public void VerifyVoteByScrollingToElement() {
-		hp.navigateLoginPage();
-		comm.scrollTo(lp.lpLoginBtn);
-		lp.loginUser(td.validEmail1, td.validPassword);
-		lp.lpLoginBtn.click();
-		comm.scrollTo(hp.hpVoteBtn);
-		hp.hpVoteExellentRadioBtn.click();
-		hp.hpVoteBtn.click();
-		comm.waitElement(hp.hpLogoutLink);
-		hp.verifyVoteIsSuccessful();
+		homePage.navigateLoginPage();
+		comm.scrollTo(loginPage.lpLoginBtn);
+		loginPage.loginUser(testData.validEmail1, testData.validPassword);
+		loginPage.lpLoginBtn.click();
+		comm.scrollTo(homePage.hpVoteBtn);
+		homePage.hpVoteExellentRadioBtn.click();
+		homePage.hpVoteBtn.click();
+		comm.waitElement(homePage.hpLogoutLink);
+		homePage.verifyVoteIsSuccessful();
 	}
 
 	@Test
 	public void VerifyVoteByScrollingToElementWithRandomUserGenerated() {
-		rp.registerNewUserWithRandomEmail(td.firstName, td.lastName, td.validPassword, td.validConfrimPassword);
-		comm.scrollTo(hp.hpVoteBtn);
-		hp.hpVoteExellentRadioBtn.click();
-		hp.hpVoteBtn.click();
-		comm.waitElement(hp.hpLogoutLink);
-		comm.waitElement(hp.hpPollResults);
-		hp.verifyVoteIsSuccessful();
+		registerPage.registerNewUserWithRandomEmail(testData.firstName, testData.lastName, testData.validPassword,
+				testData.validConfrimPassword);
+		comm.scrollTo(homePage.hpVoteBtn);
+		homePage.hpVoteExellentRadioBtn.click();
+		homePage.hpVoteBtn.click();
+		comm.waitElement(homePage.hpLogoutLink);
+		comm.waitElement(homePage.hpPollResults);
+		homePage.verifyVoteIsSuccessful();
 	}
 
 }

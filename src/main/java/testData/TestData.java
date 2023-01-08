@@ -10,6 +10,8 @@ public class TestData {
 	public String validEmail5 ="5aleksandar@hotmail.com";
 	public String validEmail6 ="6aleksandar@hotmail.com";
 	public String emptyEmail = "";
+	public String emptyPassword = "";
+	public String emptyConfirmPassword = "";
 
 	public String invalidEmail = "test@test.com";
 	public String incorrectEmail = "123456";
@@ -69,12 +71,16 @@ public class TestData {
 	public String reviewTitle = "Lieca Rules";
 	public String reviewTxt = "Excelent Camera";
 	
+	
 	//search Data
 	public String searchItemNike = "nIkE";
 	public String searchItemApple = "apple";
 	public String valueComNote = "3";
 	
-	public String invaildItemSorcePage = "Apple iCam";
+	public String invaildItemSourcePage = "Apple iCam";
+	public String validItemSourcePage = "Processor: 2.2 GHz Intel Pentium Dual-Core E2200" + " " + "RAM: 8GB" + " " + "HDD: 400 GB"+ " " + "OS: Vista Home";
+	public String validItemSourcePage1 = "RAM: 8GB";
+	public String validItemSourcePage2 = "Processor: 2.2 GHz Intel Pentium Dual-Core E2200";
 	
 	//screenshot
 	public String screenshotName = "nopcommerce";
@@ -85,13 +91,14 @@ public class TestData {
 	public String startYear = "2023";
 	public String endYear = "2023";
 	public String startDay = "20";
-	public String endDay = "31";
+	public String endDay = "30";
 	
 	
 	public String xssAttack = "<script></script>";
 	public String blockPageTitle ="Attention Required! | Cloudflare";
 	public String sqlInjection = "\"Select * from product\"";
-	public String processor25GHz = "2";
+	public String processor2_2GHZ = "1";
+	public String processor2_5GHz = "2";
 	public String ram8GB = "5";
 	
 }

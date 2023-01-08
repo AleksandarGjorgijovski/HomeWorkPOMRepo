@@ -1,73 +1,84 @@
 package testSuite;
 
+import java.awt.AWTException;
+import java.io.IOException;
+
 import org.openqa.selenium.Keys;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import base.Base;
+import base.CommonPOM;
 import pageObjectsRepository.HomePageObjects;
 import pageObjectsRepository.RegisterPageObjects;
 import pageObjectsRepository.SearchPageObjects;
 import testData.TestData;
 
 public class SearchPagePomTestScripts extends Base {
-	HomePageObjects hp;
-	RegisterPageObjects rp;
-	TestData td;
-	SearchPageObjects sp;
+	HomePageObjects homePage;
+	RegisterPageObjects registerPage;
+	TestData testData;
+	SearchPageObjects searchPage;
+	CommonPOM comm;
 
 	@BeforeMethod
 	public void start() {
 		testSetup();
-		hp = new HomePageObjects();
-		rp = new RegisterPageObjects();
-		td = new TestData();
-		sp = new SearchPageObjects();
+		homePage = new HomePageObjects();
+		registerPage = new RegisterPageObjects();
+		testData = new TestData();
+		searchPage = new SearchPageObjects();
+		comm = new CommonPOM();
 	}
 
 	@AfterMethod
-	public void end() {
+	public void end(ITestResult result) throws IOException, AWTException{
+		if(ITestResult.FAILURE==result.getStatus())
+		{
+			captureScreenshotURL(result.getName());
+		}
 		testTeardown();
 	}
 
 	@Test
 	public void searchMissingElement() throws InterruptedException {
-		sp.searchFiled.sendKeys(td.searchItemApple);
-		sp.hpSearchBtn.click();
-		sp.advancedSearch.click();
-		sp.searchComNoteDropManu.click();
-		sp.searchBtnPg.click();
+		searchPage.searchFiled.sendKeys(testData.searchItemApple);
+		searchPage.hpSearchBtn.click();
+		searchPage.advancedSearch.click();
+		searchPage.searchComNoteDropManu.click();
+		searchPage.searchBtnPg.click();
 		Thread.sleep(5000);
-		sp.verifyByPageSource(td.invaildItemSorcePage);
+		comm.verifyByPageSourceNotContains(testData.invaildItemSourcePage);
 	}
 
 	@Test
 	public void TC_SEARCH_001_CaseInsensitive() {
-		sp.searchFiled.sendKeys(td.searchItemNike);
-		sp.hpSearchBtn.click();
-		sp.verifyContainsForEachLoop(td.searchItemNike);
+		searchPage.searchFiled.sendKeys(testData.searchItemNike);
+		searchPage.hpSearchBtn.click();
+		searchPage.verifyContainsForEachLoop(testData.searchItemNike);
 
 	}
 
 	@Test
 	public void VerifyAnErrorMessageShouldDisplayForBlankInput() {
-		sp.hpSearchBtn.click();
-		sp.verifyAlertBlankSearch();
+		searchPage.hpSearchBtn.click();
+		searchPage.verifyAlertBlankSearch();
 	}
 
 	@Test
 	public void searchXssVulnerability() {
-		sp.searchFiled.sendKeys(td.xssAttack);
-		sp.hpSearchBtn.sendKeys(Keys.ENTER);
-		sp.verifySuccessfulBlockOnAttack();
+		searchPage.searchFiled.sendKeys(testData.xssAttack);
+		searchPage.hpSearchBtn.sendKeys(Keys.ENTER);
+		searchPage.verifySuccessfulBlockOnAttack();
 	}
 
 	@Test
 	public void searchSqlInjection() {
-		sp.searchFiled.sendKeys(td.sqlInjection);
-		sp.hpSearchBtn.sendKeys(Keys.ENTER);
-		sp.verifySuccessfulBlockOnAttack();
+		searchPage.searchFiled.sendKeys(testData.sqlInjection);
+		searchPage.hpSearchBtn.sendKeys(Keys.ENTER);
+		searchPage.verifySuccessfulBlockOnAttack();
 	}
 
 }

@@ -65,10 +65,7 @@ public class SearchPageObjects extends Base {
 			
 		}
 		//verifications
-		public void verifyByPageSource(String ItemSorcePage) {
-			String pageSource = driver.getPageSource(); 
-			Assert.assertFalse((pageSource.contains(ItemSorcePage)));
-		}
+		
 		public void verifyAlertBlankSearch() {
 			String expAlertMsg = "Please enter some search keyword";
 			

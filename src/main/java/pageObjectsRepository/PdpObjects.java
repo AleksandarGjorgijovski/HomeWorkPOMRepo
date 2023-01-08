@@ -141,43 +141,6 @@ public class PdpObjects extends Base {
 		quantityField.sendKeys(Integer.toString(quantityNumber));
 	}
 
-	// verification
-	public void verifySuccessfulDownload(String downloadedFile) {
-		String filesDirectory = "C:\\Users\\user\\Downloads";
-		File folder = new File(filesDirectory);
-		File[] listOfFiles = folder.listFiles();
-		boolean found = false;
-		File f = null;
-		// Look for the file in the files
-		for (File listOfFile : listOfFiles) {
-			if (listOfFile.isFile()) {
-				String fileName = listOfFile.getName();
-				System.out.println("File " + listOfFile.getName());
-				if (fileName.matches(downloadedFile)) {
-					f = new File(fileName);
-					found = true;
-				}
-			}
-		}
-		Assert.assertTrue(found, "Downloaded document is not found");
-		f.deleteOnExit();
-
-	}
-
-	public void verifySuccesfulReview(String title, String text) {
-		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='result']")).isDisplayed(),
-				"Error: review was not seccesfully added");
-		System.out.println("Product review is successfully added");
-
-		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='review-title']")).getText().contains(title),
-				"Error: review Title is not displayed");
-		System.out.println("Title" + title + " is displayed");
-		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='text-body']")).getText().contains(text),
-				"Error: review Title is not displayed");
-		System.out.println("Review" + text + " is displayed");
-
-	}
-
 	public void ChooseStartDateCalendar(String startMonth, String startYear, String startDay) {
 		// repeat the loop till finding the expected month and year
 		while (true) {
@@ -289,5 +252,43 @@ public class PdpObjects extends Base {
 			}
 		}
 	}
+
+	// verification
+	public void verifySuccessfulDownload(String downloadedFile) {
+		String filesDirectory = "C:\\Users\\user\\Downloads";
+		File folder = new File(filesDirectory);
+		File[] listOfFiles = folder.listFiles();
+		boolean found = false;
+		File f = null;
+		// Look for the file in the files
+		for (File listOfFile : listOfFiles) {
+			if (listOfFile.isFile()) {
+				String fileName = listOfFile.getName();
+				System.out.println("File " + listOfFile.getName());
+				if (fileName.matches(downloadedFile)) {
+					f = new File(fileName);
+					found = true;
+				}
+			}
+		}
+		Assert.assertTrue(found, "Downloaded document is not found");
+		f.deleteOnExit();
+
+	}
+
+	public void verifySuccesfulReview(String title, String text) {
+		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='result']")).isDisplayed(),
+				"Error: review was not seccesfully added");
+		System.out.println("Product review is successfully added");
+
+		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='review-title']")).getText().contains(title),
+				"Error: review Title is not displayed");
+		System.out.println("Title" + title + " is displayed");
+		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='text-body']")).getText().contains(text),
+				"Error: review Title is not displayed");
+		System.out.println("Review" + text + " is displayed");
+
+	}
+	
 
 }

@@ -15,25 +15,25 @@ import pageObjectsRepository.WishlistPageObjects;
 import testData.TestData;
 
 public class WishlistPomTestScripts extends Base {
-	HomePageObjects hp;
-	WishlistPageObjects wp;
-	TestData td;
+	HomePageObjects homePage;
+	WishlistPageObjects wishlistPage;
+	TestData testData;
 	PlpObjects plp;
 	PdpObjects pdp;
-	ShoppingCartPageObjects shp;
-	RegisterPageObjects rp;
+	ShoppingCartPageObjects shoppingCartPage;
+	RegisterPageObjects registerPage;
 	CommonPOM comm;
 	
 	@BeforeMethod
 	public void start() {
 		testSetup();
-		hp = new HomePageObjects();
-		wp = new WishlistPageObjects();
-		td = new TestData();	
+		homePage = new HomePageObjects();
+		wishlistPage = new WishlistPageObjects();
+		testData = new TestData();	
 		plp = new PlpObjects();
 		pdp = new PdpObjects();
-		shp = new ShoppingCartPageObjects();
-		rp = new RegisterPageObjects();
+		shoppingCartPage = new ShoppingCartPageObjects();
+		registerPage = new RegisterPageObjects();
 		comm = new CommonPOM();
 	}
 	@AfterMethod
@@ -43,33 +43,33 @@ public class WishlistPomTestScripts extends Base {
 	@Test
 	public void TC_WISHLIST_003_1_AddItemsToCartFromWishlistWihtLevis(){
 		//insert two items it no Wish list, and only one send to Shopping cart
-		comm.waitElement(hp.hpApparelBanner);
-		comm.mouseOverAndClickAction(hp.hpApparelBanner, hp.hpShoesBanner);
+		comm.waitElement(homePage.hpApparelBanner);
+		comm.mouseOverAndClickAction(homePage.hpApparelBanner, homePage.hpShoesBanner);
 		pdp.adidasLink.click();
-		comm.selectFromDropManu(pdp.adidasSizeDropBox, td.validSizeValue);
+		comm.selectFromDropManu(pdp.adidasSizeDropBox, testData.validSizeValue);
 		pdp.addWishlistBtn.click();
 		
-		comm.mouseOverAndClickAction(hp.hpApparelBanner, hp.hpClothingBanner);
-		hp.hpApparelBanner.click();
+		comm.mouseOverAndClickAction(homePage.hpApparelBanner, homePage.hpClothingBanner);
+		homePage.hpApparelBanner.click();
 		plp.plpClothingSubCategory.click();
 		pdp.levisLink.click();
 		pdp.quantityField.clear();
-		pdp.quantityField.sendKeys(td.validQuantity);
+		pdp.quantityField.sendKeys(testData.validQuantity);
 		pdp.addWishlistBtn.click();
-		hp.hpWishlistLink.click();
-		wp.wLeviAddTocartChBox.click();
-		wp.wAddToCartBtn.click();
-		wp.verifyItemAddToCartSuccessful();
+		homePage.hpWishlistLink.click();
+		wishlistPage.wLeviAddTocartChBox.click();
+		wishlistPage.wAddToCartBtn.click();
+		wishlistPage.verifyItemAddToCartSuccessful();
 	}
 	@Test
 	public void TC_WISHLIST_007_1_CheckTotalPriceIsCalculated() {
-		hp.hpBooksBanner.click();
+		homePage.hpBooksBanner.click();
 		pdp.firstPrizePiesLink.click();
 		pdp.addWishlistBtn.click();
-		hp.hpWishlistLink.click();
-		wp.wQunatity1st.clear();
-		wp.wQunatity1st.sendKeys(td.validQuantity5);
-		wp.wUpdateBtn.click();
-		wp.verifyInciresePriceWithQuantity();
+		homePage.hpWishlistLink.click();
+		wishlistPage.wQunatity1st.clear();
+		wishlistPage.wQunatity1st.sendKeys(testData.validQuantity5);
+		wishlistPage.wUpdateBtn.click();
+		wishlistPage.verifyInciresePriceWithQuantity();
 	}
 }

@@ -160,4 +160,49 @@ public class ShoppingTestScripts extends Base {
 
 	}
 
+	@Test
+	public void VerifyShoppingCartHoldsItemsAfterContinueShopping() {
+		comm.mouseOverAndClickAction(homePage.hpApparelBanner, homePage.hpAccessoriesBanner);
+		plp.plpObeyPropagandaHatLink.click();
+		comm.selectFromDropManu(pdp.pdpSizeHatDropBox, testData.validHatSizeMedium);
+		pdp.addCartBtn.click();
+		pdp.insertQuantityPDP(2);
+		pdp.addCartBtn.click();
+		homePage.shoppingCartMsgLink.click();
+		shoppingCartPage.shContinueShopBtn.click();
+		homePage.hpShoppingCartLink.click();
+		comm.verifyByPageSourceContains(testData.SKUObeyPropagandaHat);
+
+	}
+
+	@Test
+	public void VerifyMaximumQuantityRules() {
+		comm.mouseOverAndClickAction(homePage.hpElectronicsBanner, homePage.hpCameraAndPhoto);
+		plp.plpLeicaLink.click();
+		pdp.insertQuantityPDP(10001);
+		pdp.addCartBtn.click();
+		comm.waitElement(pdp.pdpInvalidMaxQuantity);
+		pdp.verifyInvalidMaximumQuantity();
+	}
+
+	@Test
+	public void VerifyMinimumQuantityRules() {
+		comm.mouseOverAndClickAction(homePage.hpComputersBanner, homePage.hpNotebooksBanner);
+		plp.plpAppleMacBookLink.click();
+		pdp.insertQuantityPDP(2);
+		pdp.addCartBtn.click();
+		homePage.shoppingCartMsgLink.click();
+		shoppingCartPage.updateQuantityShoppingCart(1);
+		shoppingCartPage.verifyMinimumQuantityWarningMsg();
+
+	}
+	@Test
+	public void VerifyNegativeQuantity() {
+		homePage.hpBooksBanner.click();
+		plp.plpPrideAndPrejudiceLink.click();
+		pdp.insertQuantityPDP(-1);
+		pdp.addCartBtn.click();
+		comm.waitElement(pdp.pdpNegativeQuantityWarningMsg);
+		pdp.verifyNegativeQuantityWarningMsg();
+	}
 }

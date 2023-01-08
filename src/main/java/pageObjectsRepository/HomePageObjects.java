@@ -50,8 +50,14 @@ public class HomePageObjects extends Base {
 	@FindBy(xpath = "//a[@href='/desktops']")
 	public WebElement hpDesktopBanner;
 	
+	@FindBy(xpath = "//a[@href='/notebooks']")
+	public WebElement hpNotebooksBanner;
+	
 	@FindBy(xpath = "(//a[@href='/electronics'])[1]")
 	public WebElement hpElectronicsBanner;
+	
+	@FindBy(xpath = "(//a[@href='/camera-photo'])[1]")
+	public WebElement hpCameraAndPhoto;
 	
 	@FindBy(xpath = "(//a[@href='/apparel'])[1]")
 	public WebElement hpApparelBanner;

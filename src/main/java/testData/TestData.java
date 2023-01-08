@@ -86,6 +86,7 @@ public class TestData {
 	public String SKUElegant = "EG_GEM_NL";
 	public String SKUFahrenheit = "FR_451_RB";
 	public String SKUFlowerGirlBracelet = "FL_GIRL_B";
+	public String SKUObeyPropagandaHat = "OB_HAT_PR";
 	
 	
 	//screenshot

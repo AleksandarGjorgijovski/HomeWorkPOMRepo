@@ -30,7 +30,7 @@ public class ShoppingCartPageObjects extends Base {
 	public WebElement shUpdateCartBtn;
 
 	@FindBy(xpath = "//button[@class='button-2 continue-shopping-button']")
-	WebElement shContinueShopBtn;
+	public WebElement shContinueShopBtn;
 
 	@FindBy(xpath = "//button[@class='remove-btn']")
 	WebElement shRemoveBtn;
@@ -58,7 +58,7 @@ public class ShoppingCartPageObjects extends Base {
 
 	@FindBy(xpath = "//span[text()='LV_511_JN']/parent::td[@class='sku']/following-sibling::td[@class='quantity']/child::input")
 	public WebElement shLevisQuantityField;
-	
+
 	@FindBy(xpath = "//input[@class='qty-input']")
 	public WebElement shQuantityField;
 
@@ -71,12 +71,21 @@ public class ShoppingCartPageObjects extends Base {
 	@FindBy(xpath = "//p[contains(text(),'conditions')]")
 	public WebElement shTermsOfServiceDialog;
 
+	@FindBy(xpath = "//*[contains(text(),'The minimum quantity')]")
+	public WebElement shMinimumQuantityWarningMsg;
+
 	// Initiation
 	public ShoppingCartPageObjects() {
 		PageFactory.initElements(driver, this);
 	}
 
 	// Methods
+	public void updateQuantityShoppingCart(int quantity) {
+		shQuantityField.clear();
+		shQuantityField.sendKeys(Integer.toString(quantity));
+		shUpdateCartBtn.click();
+	}
+
 	public void updateShoppingCart(WebElement qunatityField) {
 		shUpdateCartBtn.click();
 	}
@@ -149,6 +158,10 @@ public class ShoppingCartPageObjects extends Base {
 
 	public void verifyTermsOfServiceDialogWindow() {
 		Assert.assertTrue(shTermsOfServiceDialog.isDisplayed());
+	}
+
+	public void verifyMinimumQuantityWarningMsg() {
+		Assert.assertTrue(shMinimumQuantityWarningMsg.isDisplayed());
 	}
 
 }

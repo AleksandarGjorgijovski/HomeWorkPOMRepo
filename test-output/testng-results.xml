@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="5" total="6" passed="1" failed="0" skipped="0">
+<testng-results ignored="9" total="10" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-01-08T22:49:16 CET" name="Default suite" finished-at="2023-01-08T22:49:26 CET" duration-ms="10663">
+  <suite started-at="2023-01-09T00:16:45 CET" name="Default suite" finished-at="2023-01-09T00:16:54 CET" duration-ms="8734">
     <groups>
     </groups>
-    <test started-at="2023-01-08T22:49:16 CET" name="Default test" finished-at="2023-01-08T22:49:26 CET" duration-ms="10663">
+    <test started-at="2023-01-09T00:16:45 CET" name="Default test" finished-at="2023-01-09T00:16:54 CET" duration-ms="8734">
       <class name="testSuite.ShoppingTestScripts">
-        <test-method is-config="true" signature="start()[pri:0, instance:testSuite.ShoppingTestScripts@23529fee]" started-at="2023-01-08T22:49:16 CET" name="start" finished-at="2023-01-08T22:49:19 CET" duration-ms="3106" status="PASS">
+        <test-method is-config="true" signature="start()[pri:0, instance:testSuite.ShoppingTestScripts@2fd6b6c7]" started-at="2023-01-09T00:16:45 CET" name="start" finished-at="2023-01-09T00:16:48 CET" duration-ms="3005" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- start -->
-        <test-method signature="VerifyItemQuantityIncreasedIfUserAddsSameItemInCartAgain()[pri:0, instance:testSuite.ShoppingTestScripts@23529fee]" started-at="2023-01-08T22:49:19 CET" name="VerifyItemQuantityIncreasedIfUserAddsSameItemInCartAgain" finished-at="2023-01-08T22:49:23 CET" duration-ms="4447" status="PASS">
+        <test-method signature="VerifyNegativeQuantity()[pri:0, instance:testSuite.ShoppingTestScripts@2fd6b6c7]" started-at="2023-01-09T00:16:48 CET" name="VerifyNegativeQuantity" finished-at="2023-01-09T00:16:51 CET" duration-ms="2629" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- VerifyItemQuantityIncreasedIfUserAddsSameItemInCartAgain -->
-        <test-method is-config="true" signature="end(org.testng.ITestResult)[pri:0, instance:testSuite.ShoppingTestScripts@23529fee]" started-at="2023-01-08T22:49:23 CET" name="end" finished-at="2023-01-08T22:49:26 CET" duration-ms="3093" status="PASS">
+        </test-method> <!-- VerifyNegativeQuantity -->
+        <test-method is-config="true" signature="end(org.testng.ITestResult)[pri:0, instance:testSuite.ShoppingTestScripts@2fd6b6c7]" started-at="2023-01-09T00:16:51 CET" name="end" finished-at="2023-01-09T00:16:54 CET" duration-ms="3087" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=VerifyItemQuantityIncreasedIfUserAddsSameItemInCartAgain status=SUCCESS method=ShoppingTestScripts.VerifyItemQuantityIncreasedIfUserAddsSameItemInCartAgain()[pri:0, instance:testSuite.ShoppingTestScripts@23529fee] output={null}]]]>
+                <![CDATA[[TestResult name=VerifyNegativeQuantity status=SUCCESS method=ShoppingTestScripts.VerifyNegativeQuantity()[pri:0, instance:testSuite.ShoppingTestScripts@2fd6b6c7] output={null}]]]>
               </value>
             </param>
           </params>

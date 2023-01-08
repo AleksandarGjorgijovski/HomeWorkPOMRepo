@@ -88,6 +88,9 @@ public class PlpObjects extends Base {
 
 	@FindBy(xpath = "//h2[@class='product-title']/child::*[contains(text(),'Leica')]")
 	public WebElement plpLeicaLink;
+	
+	@FindBy(xpath = "//h2[@class='product-title']/child::*[contains(text(),'Apple')]")
+	public WebElement plpAppleMacBookLink;
 
 	@FindBy(xpath = "//a[@href='/nike-tailwind-loose-short-sleeve-running-shirt']")
 	public WebElement plpNikeTailwindLink;

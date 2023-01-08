@@ -97,7 +97,7 @@ public class PdpObjects extends Base {
 
 	@FindBy(xpath = "//select[@id='product_attribute_13']")
 	public WebElement pdpSizeHatDropBox;
-	
+
 	@FindBy(xpath = "//div[@class='sku']/child::*[@class='value']")
 	public WebElement pdpSkuCode;
 
@@ -119,6 +119,12 @@ public class PdpObjects extends Base {
 
 	@FindBy(xpath = "//input[@id='product_attribute_4_9']")
 	public WebElement pdpVistaPremiumRadioBtn;
+
+	@FindBy(xpath = "//p[text()='The maximum quantity allowed for purchase is 10000.']")
+	public WebElement pdpInvalidMaxQuantity;
+
+	@FindBy(xpath = "//*[contains(text(),'Quantity should be positive')]")
+	public WebElement pdpNegativeQuantityWarningMsg;
 
 	// initi
 	public PdpObjects() {
@@ -292,6 +298,13 @@ public class PdpObjects extends Base {
 		System.out.println("Review" + text + " is displayed");
 
 	}
-	
+
+	public void verifyInvalidMaximumQuantity() {
+		Assert.assertTrue(pdpInvalidMaxQuantity.isDisplayed());
+	}
+
+	public void verifyNegativeQuantityWarningMsg() {
+		Assert.assertTrue(pdpNegativeQuantityWarningMsg.isDisplayed());
+	}
 
 }

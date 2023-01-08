@@ -5,8 +5,8 @@
     <classes>
       <class name="testSuite.ShoppingTestScripts">
         <methods>
-          <include name="VerifyItemQuantityIncreasedIfUserAddsSameItemInCartAgain"/>
           <include name="start"/>
+          <include name="VerifyNegativeQuantity"/>
           <include name="end"/>
         </methods>
       </class> <!-- testSuite.ShoppingTestScripts -->

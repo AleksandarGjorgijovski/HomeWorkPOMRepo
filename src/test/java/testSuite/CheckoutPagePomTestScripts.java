@@ -1,7 +1,5 @@
 package testSuite;
 
-
-
 import java.awt.AWTException;
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -25,7 +23,7 @@ import pageObjectsRepository.ShoppingCartPageObjects;
 import pageObjectsRepository.WishlistPageObjects;
 import testData.TestData;
 
-public class CheckoutPagePomTestScripts extends Base{
+public class CheckoutPagePomTestScripts extends Base {
 	TestData testData;
 	CommonPOM comm;
 	HomePageObjects homePage;
@@ -38,7 +36,6 @@ public class CheckoutPagePomTestScripts extends Base{
 	CheckoutPageObjects checkoutPage;
 	RegisterPageObjects registerPage;
 
-	
 	@BeforeMethod
 	public void start(Method testCase) {
 		testSetup();
@@ -53,20 +50,17 @@ public class CheckoutPagePomTestScripts extends Base{
 		loginPage = new LoginPageObjects();
 		checkoutPage = new CheckoutPageObjects();
 		registerPage = new RegisterPageObjects();
-		
-		//precondition for TC_CHECKOUT_004_CheckIfErrorMessageIsDisplayedWhenUserEntersInvalidData()
-//		if(testCase.getName().equals("TC_CHECKOUT_004_CheckIfErrorMessageIsDisplayedWhenUserEntersInvalidData()")) { 
-//			rp.registerUserForCheckoutTestsBeforeMethod(td.firstName, td.lastName, td.validEmail1, td.validPassword, td.validConfrimPassword);
-//			}
+
 	}
+
 	@AfterMethod
-	public void end(ITestResult result) throws IOException, AWTException{
-		if(ITestResult.FAILURE==result.getStatus())
-		{
+	public void end(ITestResult result) throws IOException, AWTException {
+		if (ITestResult.FAILURE == result.getStatus()) {
 			captureScreenshotURL(result.getName());
 		}
 		testTeardown();
 	}
+
 	@Test
 	public void TC_CHECKOUT_011_ReturningCustomerDifferentBillingAndShippingAddress() throws IOException, AWTException {
 		comm.waitElement(homePage.hpComputersBanner);
@@ -77,20 +71,24 @@ public class CheckoutPagePomTestScripts extends Base{
 		comm.waitElement(shoppingCartPage.shTermsChbox);
 		shoppingCartPage.acceptTermsAndCheckoutBtn();
 		loginPage.loginUserAndLoginBtn(testData.validEmail, testData.validPassword);
-		registerPage.registerUserIfNotAlreadyRegistered(testData.firstName, testData.lastName, testData.validEmail, testData.validPassword, testData.validConfrimPassword);
+		registerPage.registerUserIfNotAlreadyRegistered(testData.firstName, testData.lastName, testData.validEmail,
+				testData.validPassword, testData.validConfrimPassword);
 		shoppingCartPage.acceptTermsAndCheckoutBtn();
 		checkoutPage.chBillShipToTheSameAddressCheckbox.click();
-		checkoutPage.ifBillingAddressBookIsPopulatedOrNot(0, testData.validMacedoniaValue, testData.validCityBitola, testData.validAddress, testData.validZipCode, testData.validPhoneNumber);
+		checkoutPage.ifBillingAddressBookIsPopulatedOrNot(0, testData.validMacedoniaValue, testData.validCityBitola,
+				testData.validAddress, testData.validZipCode, testData.validPhoneNumber);
 		comm.waitElement(checkoutPage.chSelectShippingAddressBook);
 		comm.selectFromDropManuByLastIndex(checkoutPage.chSelectShippingAddressBook);
-		checkoutPage.validShippingAddressMandatoryField(testData.validMacedoniaValue, testData.validCityPrilep, testData.validShipAddress, testData.validShipZipCode, testData.validShipPhoneNumber);
+		checkoutPage.validShippingAddressMandatoryField(testData.validMacedoniaValue, testData.validCityPrilep,
+				testData.validShipAddress, testData.validShipZipCode, testData.validShipPhoneNumber);
 		captureScreenshotURL("shippingAddress");
-	//	captureFullScreenshot("shippingAddress");
+		// captureFullScreenshot("shippingAddress");
 		checkoutPage.shippingMethod(checkoutPage.chShipMethodGorund);
 		comm.waitElement(checkoutPage.chPayMethodCard);
 		checkoutPage.paymentMethod(checkoutPage.chPayMethodCard);
 		comm.waitElement(checkoutPage.chPayInfoConBtn);
-		checkoutPage.paymentInformation(testData.firstName, testData.lastName, testData.validCardNumber, testData.validExpireMonth, testData.validExpireYear, testData.validCardCode);
+		checkoutPage.paymentInformation(testData.firstName, testData.lastName, testData.validCardNumber,
+				testData.validExpireMonth, testData.validExpireYear, testData.validCardCode);
 		comm.waitElement(checkoutPage.chConfirmOrderConBtn);
 		checkoutPage.chConfirmOrderConBtn.click();
 		comm.waitElement(checkoutPage.chOrderCopmliteConBtn);
@@ -98,6 +96,7 @@ public class CheckoutPagePomTestScripts extends Base{
 		comm.waitElement(checkoutPage.chEmpltyShoppingCart);
 		checkoutPage.verifySuccessfulCheckoutAndEmpltyShoppingCart();
 	}
+
 	@Test
 	public void TC_CHECKOUT_007_CheckoutAsGuestAndPayWithCheckMoneyOrder() {
 		comm.waitElement(homePage.hpComputersBanner);
@@ -108,7 +107,9 @@ public class CheckoutPagePomTestScripts extends Base{
 		comm.waitElement(shoppingCartPage.shTermsChbox);
 		shoppingCartPage.acceptTermsAndCheckoutBtn();
 		checkoutPage.chCheckoutAsGuest.click();
-		checkoutPage.validBillAddressAllMandatoryField(testData.firstName, testData.lastName, testData.validEmail6, testData.validMacedoniaValue, testData.validCityBitola, testData.validAddress, testData.validZipCode, testData.validPhoneNumber);
+		checkoutPage.validBillAddressAllMandatoryField(testData.firstName, testData.lastName, testData.validEmail6,
+				testData.validMacedoniaValue, testData.validCityBitola, testData.validAddress, testData.validZipCode,
+				testData.validPhoneNumber);
 		comm.waitElement(checkoutPage.chShipMethodGorund);
 		checkoutPage.shippingMethod(checkoutPage.chShipMethodGorund);
 		comm.waitElement(checkoutPage.chPayMethodCheck);
@@ -123,6 +124,7 @@ public class CheckoutPagePomTestScripts extends Base{
 		comm.waitElement(checkoutPage.chEmpltyShoppingCart);
 		checkoutPage.verifySuccessfulCheckoutAndEmpltyShoppingCart();
 	}
+
 	@Test
 	public void TC_CHECKOUT_004_CheckIfErrorMessageIsDisplayedWhenUserEntersInvalidData() {
 		comm.waitElement(homePage.hpComputersBanner);
@@ -135,16 +137,19 @@ public class CheckoutPagePomTestScripts extends Base{
 		captureScreenshot("shopping cart");
 		shoppingCartPage.acceptTermsAndCheckoutBtn();
 		checkoutPage.chCheckoutAsGuest.click();
-		checkoutPage.validBillAddressAllMandatoryField(testData.firstName, testData.lastName, testData.incorrectEmail, testData.validMacedoniaValue, testData.validCityBitola, testData.validAddress, testData.validZipCode, testData.validPhoneNumber);
-//		Assert.assertTrue(ch.chShipMetodConBtn.isDisplayed(), "User is not navigated to Shopping Method");
-			//Proverka
+		checkoutPage.validBillAddressAllMandatoryField(testData.firstName, testData.lastName, testData.incorrectEmail,
+				testData.validMacedoniaValue, testData.validCityBitola, testData.validAddress, testData.validZipCode,
+				testData.validPhoneNumber);
 		Assert.assertFalse(checkoutPage.chShipMetodConBtn.isDisplayed(), "User is navigated to Shopping Method");
 
 	}
+
 	@Test
 	public void TC_CHECKOUT_005_verifyScreenshotWhereTheMistakeIsMade() {
-		/*Check if error message is displayed when user doesn't enter data in all of 
-		the required filed in billing address while checking out as guest*/
+		/*
+		 * Check if error message is displayed when user doesn't enter data in all of
+		 * the required filed in billing address while checking out as guest
+		 */
 		comm.waitElement(homePage.hpComputersBanner);
 		comm.mouseOverAndClickAction(homePage.hpComputersBanner, homePage.hpSoftWareBanner);
 		comm.waitElement(plp.plpWindows8addToCart);
@@ -154,14 +159,17 @@ public class CheckoutPagePomTestScripts extends Base{
 		shoppingCartPage.acceptTermsAndCheckoutBtn();
 		checkoutPage.chCheckoutAsGuest.click();
 		checkoutPage.chBillContinueBtn.click();
-		
-		Assert.assertTrue(checkoutPage.chShipMetodConBtn.isDisplayed(), "Required mandatory Billing Address fields are not properly populated");
+
+		Assert.assertTrue(checkoutPage.chShipMetodConBtn.isDisplayed(),
+				"Required mandatory Billing Address fields are not properly populated");
 	}
+
 	@Test
 	public void VerifyInvalidCheckoutWithBlankPaymentInformation() {
 		homePage.hpLoginLink.click();
 		loginPage.loginUserAndLoginBtn(testData.validEmail, testData.validPassword);
-		registerPage.registerUserIfNotAlreadyRegistered(testData.firstName, testData.lastName, testData.validEmail, testData.validPassword, testData.validConfrimPassword);
+		registerPage.registerUserIfNotAlreadyRegistered(testData.firstName, testData.lastName, testData.validEmail,
+				testData.validPassword, testData.validConfrimPassword);
 		comm.mouseOverAndClickAction(homePage.hpComputersBanner, homePage.hpDesktopBanner);
 		comm.waitElement(plp.plpBuildYourOwnComputer);
 		plp.plpBuildYourOwnComputer.click();
@@ -172,7 +180,8 @@ public class CheckoutPagePomTestScripts extends Base{
 		pdp.addCartBtn.click();
 		homePage.shoppingCartMsgLink.click();
 		shoppingCartPage.acceptTermsAndCheckoutBtn();
-		checkoutPage.ifBillingAddressBookIsPopulatedOrNot(0, testData.validMacedoniaValue, testData.validCityBitola, testData.validAddress, testData.validZipCode, testData.validPhoneNumber);
+		checkoutPage.ifBillingAddressBookIsPopulatedOrNot(0, testData.validMacedoniaValue, testData.validCityBitola,
+				testData.validAddress, testData.validZipCode, testData.validPhoneNumber);
 		comm.waitElement(checkoutPage.chShipMethodGorund);
 		checkoutPage.shippingMethod(checkoutPage.chShipMethodGorund);
 		comm.waitElement(checkoutPage.chPayMethodCard);
@@ -181,18 +190,6 @@ public class CheckoutPagePomTestScripts extends Base{
 		checkoutPage.chPayInfoConBtn.click();
 		comm.waitElement(checkoutPage.chPaymentInformationErrorMsg);
 		Assert.assertTrue(checkoutPage.chPaymentInformationErrorMsg.isDisplayed());
-		
+
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-

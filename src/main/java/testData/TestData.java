@@ -77,7 +77,9 @@ public class TestData {
 	//search Data
 	public String searchItemNike = "nIkE";
 	public String searchItemApple = "apple";
+	public String invalidSearchData = "Le";
 	public String valueComNote = "3";
+	public String valueSearchComputersNotebooks = "3";
 	
 	public String invaildItemSourcePage = "Apple iCam";
 	public String validItemSourcePage = "Processor: 2.2 GHz Intel Pentium Dual-Core E2200" + " " + "RAM: 8GB" + " " + "HDD: 400 GB"+ " " + "OS: Vista Home";

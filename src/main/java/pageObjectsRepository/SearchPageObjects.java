@@ -11,13 +11,8 @@ import base.Base;
 import testData.TestData;
 
 public class SearchPageObjects extends Base {
-	TestData td = new TestData();
+	TestData testData = new TestData();
 	
-	@FindBy(xpath = "//input[@id='small-searchterms']")
-	public WebElement searchFiled ;
-	
-	@FindBy(xpath = "//button[@class='button-1 search-box-button']")
-	public WebElement hpSearchBtn;
 	
 	@FindBy(xpath = "//input[@id='advs']")
 	public WebElement advancedSearch;
@@ -43,8 +38,8 @@ public class SearchPageObjects extends Base {
 	@FindBy(xpath = "//select[@id='products-orderby']")
 	public WebElement productOrderBy;
 	
-	@FindBy(xpath = "")
-	public WebElement searchBlankAlertMsg;
+	@FindBy(xpath = "//div[@class='warning']")
+	public WebElement searchMinimumCharactersErrorMsg;
 	
 	//Initiation
 		public SearchPageObjects() {
@@ -56,8 +51,9 @@ public class SearchPageObjects extends Base {
 		public void verifyContainsForEachLoop(String searchItem) {
 			List<WebElement> listElements = driver.findElements(By.xpath("//h2[@class='product-title']"));
 			
-			//Gi zacuvam site elementi so sodrzat "Product-Title" gi stavam vo lista(nikeElements) od WebElements
-			for (WebElement element : listElements ) {//koristam for loop, za sekoj WebElement od  listata(nikeElements) da go zemi Tekstot
+			//Gi zacuvam site elementi so sodrzat "Product-Title" gi stavam vo lista (nikeElements) od WebElements
+			for (WebElement element : listElements) {// koristam for loop, za sekoj WebElement od listata (nikeElements)
+														// da go zemi Tekstot
 				String txtElements = element.getText().toLowerCase();
 				System.out.println("Name of the find products: " + txtElements);//provermav dali vo teksot postoi Nike
 				Assert.assertTrue(txtElements.contains(searchItem.toLowerCase()), "Error: the" + searchItem + "is not displayed");
@@ -76,7 +72,10 @@ public class SearchPageObjects extends Base {
 			driver.switchTo().alert().accept();
 		}
 		public void verifySuccessfulBlockOnAttack() {
-			Assert.assertEquals(driver.getTitle(), td.blockPageTitle);
+			Assert.assertEquals(driver.getTitle(), testData.blockPageTitle);
+		}
+		public void verifyErrorMsgMinimumSearchCharacters() {
+			Assert.assertTrue(searchMinimumCharactersErrorMsg.isDisplayed());
 		}
 }
 

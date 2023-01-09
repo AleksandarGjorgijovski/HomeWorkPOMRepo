@@ -34,10 +34,10 @@ public class HomePageObjects extends Base {
 	public WebElement shoppingCartMsgLink;
 	
 	@FindBy(xpath = "//input[@id='small-searchterms']")
-	WebElement hpSearchField ;
+	public WebElement hpSearchField ;
 	
 	@FindBy(xpath = "//button[text()='Search']")
-	WebElement hpSearchBtn;
+	public WebElement hpSearchBtn;
 	
 	@FindBy(xpath = "//a[@href='/search']")
 	public WebElement hpSearchPageLink;
@@ -58,6 +58,9 @@ public class HomePageObjects extends Base {
 	
 	@FindBy(xpath = "(//a[@href='/camera-photo'])[1]")
 	public WebElement hpCameraAndPhoto;
+	
+	@FindBy(xpath = "(//a[@href='/others'])[1]")
+	public WebElement hpOthersBanner;
 	
 	@FindBy(xpath = "(//a[@href='/apparel'])[1]")
 	public WebElement hpApparelBanner;
@@ -100,6 +103,9 @@ public class HomePageObjects extends Base {
 	@FindBy(xpath = "//*[@class='poll-results']")
 	public WebElement hpPollResults;
 	
+	@FindBy(id = "customerCurrency")
+	public WebElement hpCyrrencyDropdown;
+	
 	//Initiation
 	public HomePageObjects() {
 		PageFactory.initElements(driver, this);
@@ -126,6 +132,7 @@ public class HomePageObjects extends Base {
 		//proverka
 		//Assert.assertFalse(hpPollResults.isDisplayed(), "Error: vote is successful");
 	}
+	
 }
 
 

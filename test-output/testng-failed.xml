@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="testSuite.ShoppingTestScripts">
+      <class name="testSuite.PlpPomTestScripts">
         <methods>
           <include name="start"/>
-          <include name="VerifyNegativeQuantity"/>
           <include name="end"/>
+          <include name="VerifyGridView"/>
         </methods>
-      </class> <!-- testSuite.ShoppingTestScripts -->
+      </class> <!-- testSuite.PlpPomTestScripts -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

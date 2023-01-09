@@ -44,10 +44,10 @@ public class SearchPagePomTestScripts extends Base {
 
 	@Test
 	public void searchMissingElement() throws InterruptedException {
-		searchPage.searchFiled.sendKeys(testData.searchItemApple);
-		searchPage.hpSearchBtn.click();
+		homePage.hpSearchField.sendKeys(testData.searchItemApple);
+		homePage.hpSearchBtn.click();
 		searchPage.advancedSearch.click();
-		searchPage.searchComNoteDropManu.click();
+		comm.selectFromDropManu(searchPage.searchCategoryDropManu, testData.valueSearchComputersNotebooks);
 		searchPage.searchBtnPg.click();
 		Thread.sleep(5000);
 		comm.verifyByPageSourceNotContains(testData.invaildItemSourcePage);
@@ -55,30 +55,37 @@ public class SearchPagePomTestScripts extends Base {
 
 	@Test
 	public void TC_SEARCH_001_CaseInsensitive() {
-		searchPage.searchFiled.sendKeys(testData.searchItemNike);
-		searchPage.hpSearchBtn.click();
+		homePage.hpSearchField.sendKeys(testData.searchItemNike);
+		homePage.hpSearchBtn.click();
 		searchPage.verifyContainsForEachLoop(testData.searchItemNike);
 
 	}
 
 	@Test
-	public void VerifyAnErrorMessageShouldDisplayForBlankInput() {
-		searchPage.hpSearchBtn.click();
+	public void VerifyAnErrorMessageShouldDisplayForBlankSearch() {
+		homePage.hpSearchBtn.click();
 		searchPage.verifyAlertBlankSearch();
 	}
 
 	@Test
 	public void searchXssVulnerability() {
-		searchPage.searchFiled.sendKeys(testData.xssAttack);
-		searchPage.hpSearchBtn.sendKeys(Keys.ENTER);
+		homePage.hpSearchField.sendKeys(testData.xssAttack);
+		homePage.hpSearchBtn.sendKeys(Keys.ENTER);
 		searchPage.verifySuccessfulBlockOnAttack();
 	}
 
 	@Test
 	public void searchSqlInjection() {
-		searchPage.searchFiled.sendKeys(testData.sqlInjection);
-		searchPage.hpSearchBtn.sendKeys(Keys.ENTER);
+		homePage.hpSearchField.sendKeys(testData.sqlInjection);
+		homePage.hpSearchBtn.sendKeys(Keys.ENTER);
 		searchPage.verifySuccessfulBlockOnAttack();
+	}
+	@Test
+	public void VerifyUnsuccessfulSearchSuggestionWithTwoCharacters() {
+		homePage.hpSearchField.sendKeys(testData.invalidSearchData);
+		homePage.hpSearchBtn.click();
+		searchPage.verifyErrorMsgMinimumSearchCharacters();
+		
 	}
 
 }

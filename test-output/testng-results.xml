@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="4" total="5" passed="1" failed="0" skipped="0">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-01-09T13:12:56 CET" name="Default suite" finished-at="2023-01-09T13:13:10 CET" duration-ms="14196">
+  <suite started-at="2023-06-17T16:09:06 CEST" name="Default suite" finished-at="2023-06-17T16:09:37 CEST" duration-ms="31328">
     <groups>
     </groups>
-    <test started-at="2023-01-09T13:12:56 CET" name="Default test" finished-at="2023-01-09T13:13:10 CET" duration-ms="14196">
-      <class name="testSuite.PlpPomTestScripts">
-        <test-method is-config="true" signature="start()[pri:0, instance:testSuite.PlpPomTestScripts@5c30a9b0]" started-at="2023-01-09T13:12:56 CET" name="start" finished-at="2023-01-09T13:13:04 CET" duration-ms="8632" status="PASS">
+    <test started-at="2023-06-17T16:09:06 CEST" name="Default test" finished-at="2023-06-17T16:09:37 CEST" duration-ms="31328">
+      <class name="testSuiteServiceDesk.TeamBuildingTestSuitesSD">
+        <test-method is-config="true" signature="startTest()[pri:0, instance:testSuiteServiceDesk.TeamBuildingTestSuitesSD@c267ef4]" started-at="2023-06-17T16:09:06 CEST" name="startTest" finished-at="2023-06-17T16:09:22 CEST" duration-ms="16145" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- start -->
-        <test-method signature="VerifyListViewMode()[pri:0, instance:testSuite.PlpPomTestScripts@5c30a9b0]" started-at="2023-01-09T13:13:04 CET" name="VerifyListViewMode" finished-at="2023-01-09T13:13:06 CET" duration-ms="1820" status="PASS">
+        </test-method> <!-- startTest -->
+        <test-method signature="SD_T_001_ValidRequestTeamBuilding()[pri:0, instance:testSuiteServiceDesk.TeamBuildingTestSuitesSD@c267ef4]" started-at="2023-06-17T16:09:22 CEST" name="SD_T_001_ValidRequestTeamBuilding" finished-at="2023-06-17T16:09:37 CEST" duration-ms="15160" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- VerifyListViewMode -->
-        <test-method is-config="true" signature="end(org.testng.ITestResult)[pri:0, instance:testSuite.PlpPomTestScripts@5c30a9b0]" started-at="2023-01-09T13:13:06 CET" name="end" finished-at="2023-01-09T13:13:10 CET" duration-ms="3627" status="PASS">
+        </test-method> <!-- SD_T_001_ValidRequestTeamBuilding -->
+        <test-method is-config="true" signature="end(org.testng.ITestResult)[pri:0, instance:testSuiteServiceDesk.TeamBuildingTestSuitesSD@c267ef4]" started-at="2023-06-17T16:09:37 CEST" name="end" finished-at="2023-06-17T16:09:37 CEST" duration-ms="1" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=VerifyListViewMode status=SUCCESS method=PlpPomTestScripts.VerifyListViewMode()[pri:0, instance:testSuite.PlpPomTestScripts@5c30a9b0] output={null}]]]>
+                <![CDATA[[TestResult name=SD_T_001_ValidRequestTeamBuilding status=SUCCESS method=TeamBuildingTestSuitesSD.SD_T_001_ValidRequestTeamBuilding()[pri:0, instance:testSuiteServiceDesk.TeamBuildingTestSuitesSD@c267ef4] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- end -->
-      </class> <!-- testSuite.PlpPomTestScripts -->
+      </class> <!-- testSuiteServiceDesk.TeamBuildingTestSuitesSD -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

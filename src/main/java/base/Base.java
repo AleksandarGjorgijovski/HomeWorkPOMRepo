@@ -23,7 +23,7 @@ import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 public class Base {
 	//definiranje na driver-ot, definiranje na homeUrl
 	public static WebDriver driver;
-	public String homeUrl = "https://demo.nopcommerce.com/";
+	public String homeUrl = "https://iwjira/servicedesk/customer/portal/3";
 	
 	public void testSetup() {
 		//slicno kako @BeforeMethod - seitranje na driver-ot, otvaranje na URL i setiranje na browser-ot 
@@ -52,7 +52,7 @@ public class Base {
 		}
 	}
 	public static void captureFullScreenshot(String screenshotName ) throws IOException {
-		Screenshot screenshot =new AShot().shootingStrategy(ShootingStrategies.viewportPasting(1000)).takeScreenshot(driver);
+		Screenshot screenshot =new AShot().shootingStrategy(ShootingStrategies.viewportPasting(100)).takeScreenshot(driver);
         ImageIO.write(screenshot.getImage(),"PNG",new File("./Screenshots/" + screenshotName + ".png"));
 	}
 	public static void captureScreenshotURL(String screenshotName ) throws IOException, AWTException {

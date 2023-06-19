@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="testSuiteServiceDesk.TeamBuildingTestSuitesSD">
+      <class name="testSuite.PlpPomTestScripts">
         <methods>
-          <include name="startTest"/>
-          <include name="SD_T_001_ValidRequestTeamBuilding"/>
+          <include name="start"/>
           <include name="end"/>
+          <include name="VerifyGridView"/>
         </methods>
-      </class> <!-- testSuiteServiceDesk.TeamBuildingTestSuitesSD -->
+      </class> <!-- testSuite.PlpPomTestScripts -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

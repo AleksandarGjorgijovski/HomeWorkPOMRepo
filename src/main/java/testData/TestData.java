@@ -20,7 +20,7 @@ public class TestData {
 	public String validMonth = "8";
 	public String validYear = "1990";
 	
-	public String validPassword1 = "demo123";
+	public String validPassword = "demo123";
 	public String validConfrimPassword = "demo123";
 	public String invalidPassword = "123456";
 	public String uncorrectPassword = "123";
@@ -56,6 +56,7 @@ public class TestData {
 		
 	//Titles
 	public String homePageTitle = "nopCommerce demo store";
+	public String loginPageTitle = "nopCommerce demo store. Login";
 	public String passwordRecoveryTitle = "nopCommerce demo store. Password Recovery";
 	public String registerPageTitle = "nopCommerce demo store. Register";
 	
@@ -98,6 +99,8 @@ public class TestData {
 	public String endMonth = "SEPTEMBER";
 	public String startYear = "2023";
 	public String endYear = "2023";
+	public String startDay = "20";
+	public String endDay = "30";
 	
 	
 	public String xssAttack = "<script></script>";
@@ -107,18 +110,5 @@ public class TestData {
 	public String processor2_2GHZ = "1";
 	public String processor2_5GHz = "2";
 	public String ram8GB = "5";
-	
-	
-	//SD
-	public String validUser = "aleksandar.gjorgijov";
-	public String validPassword = "AceIgor!";
-	
-	public String loginPageTitle = "Log in - Service project";
-	
-	public String startMonthYear = "July, 2023";
-	public String endMonthYear = "August, 2023";
-	public String startDay = "19";
-	public String endDay = "13";
-	
 	
 }

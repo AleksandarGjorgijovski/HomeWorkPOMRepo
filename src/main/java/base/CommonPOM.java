@@ -1,8 +1,5 @@
 package base;
 
-import java.awt.AWTException;
-import java.awt.Robot;
-import java.awt.event.KeyEvent;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.JavascriptExecutor;
@@ -13,7 +10,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-
 
 public class CommonPOM extends Base {
 
@@ -112,11 +108,5 @@ public class CommonPOM extends Base {
 		String pageSource = driver.getPageSource(); 
 		Assert.assertTrue((pageSource.contains(ItemSorcePage)));
 	}
-	public void pressEnter() throws AWTException {
-		 Robot robot = new Robot();
-		  robot.keyPress(KeyEvent.VK_ENTER); //press enter key
-		  robot.keyRelease(KeyEvent.VK_ENTER); //release enter key
-	}
-	
 
 }
